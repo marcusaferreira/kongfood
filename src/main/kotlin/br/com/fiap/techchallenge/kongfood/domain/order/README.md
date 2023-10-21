@@ -1,5 +1,5 @@
 # Bounded context: Order
-This bounded context is responsible for managing the order of the products.
+This bounded context is responsible for managing the client order.
 For a portuguese version of this document, please check [README-pt-BR.md](README-pt-BR.md).
 ## Domain: Order
 Order is a domain that manage the lifecycle of an order that a client made.
@@ -21,6 +21,9 @@ The cook can:
 Order is the aggregate root of this bounded context. It is responsible for managing the order of the products and
 the state of through the lifecycle.
 #### Entity: Order
+Order is an entity that represents the order of the products. It contains the products, the state of the order and 
+the total price, an order can be attributed to a client or not, an order has a number that can be used
+by the client to track his order.
 ##### Value Object: OrderStatus
 OrderStatus is a value object that represents the state of the order. It can be:
 - CREATED : The order was created;
@@ -37,6 +40,6 @@ Product is an entity that represents a product that can be added to the order. A
 - Food, like a burger or a pizza or a sandwich or fries. Food are divided in:
     - Main course, like a burger or a pizza or a sandwich;
     - Side dish, like fries or onion rings or chicken nuggets;
-- Drink, like a soda or a juice or water;
+- Drinks, like a soda or a juice or water;
 - Dessert, like ice cream or milkshake or petit gateau;
 - Combo, a combination of food, drink and dessert;

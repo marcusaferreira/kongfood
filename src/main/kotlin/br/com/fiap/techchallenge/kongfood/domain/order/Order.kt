@@ -2,6 +2,7 @@ package br.com.fiap.techchallenge.kongfood.domain.order
 
 import br.com.fiap.techchallenge.kongfood.domain.DomainException
 import java.math.BigDecimal
+import java.time.LocalDateTime
 import java.util.UUID
 
 class Order(
@@ -9,7 +10,9 @@ class Order(
     val lines: MutableList<OrderLine>,
     var status: OrderStatus,
     var total: BigDecimal,
-    val clientId: UUID? = null
+    val clientId: UUID? = null,
+    val initialDateTime: LocalDateTime = LocalDateTime.now(),
+    var finishedDateTime: LocalDateTime? = null
 ) {
 
     fun addOrderLine(product: Product, quantity: Int) {
@@ -36,11 +39,13 @@ class Order(
     fun cancel() {
         validateNotFinishedOrReady()
         this.status = OrderStatus.CANCELED
+        this.finishedDateTime = LocalDateTime.now()
     }
 
     fun complete() {
         validateIsReady()
         this.status = OrderStatus.FINISHED
+        this.finishedDateTime = LocalDateTime.now()
     }
 
     private fun validateIsReady() {
@@ -67,8 +72,8 @@ class Order(
     }
 
     private fun validateState() {
-        if (status != OrderStatus.PENDING) {
-            throw DomainException("Order must be in PENDING state to add a new line")
+        if (status != OrderStatus.FINISHED || status != OrderStatus.CANCELED || status != OrderStatus.READY) {
+            throw DomainException("Order must not be FINISHED, CANCELED or READY to add or remove order line")
         }
     }
 
