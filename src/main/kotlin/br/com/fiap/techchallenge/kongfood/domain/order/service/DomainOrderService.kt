@@ -13,6 +13,8 @@ class DomainOrderService(
 
     override fun createOrder(clientId: UUID?): UUID {
         val order = Order(UUID.randomUUID(), mutableListOf(), OrderStatus.CREATED, BigDecimal.ZERO, clientId)
+        val lastOrderNumber = orderRepository.countOrdersOfTheDay()
+        order.generateTrackOrderCode(lastOrderNumber)
         orderRepository.save(order)
 
         return order.id

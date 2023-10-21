@@ -1,8 +1,10 @@
 package br.com.fiap.techchallenge.kongfood.domain.order
 
 import br.com.fiap.techchallenge.kongfood.domain.DomainException
+import org.apache.commons.lang3.StringUtils
 import java.math.BigDecimal
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.UUID
 
 class Order(
@@ -12,7 +14,8 @@ class Order(
     var total: BigDecimal,
     val clientId: UUID? = null,
     val initialDateTime: LocalDateTime = LocalDateTime.now(),
-    var finishedDateTime: LocalDateTime? = null
+    var finishedDateTime: LocalDateTime? = null,
+    var trackOrderCode: String? = null
 ) {
 
     fun addOrderLine(product: Product, quantity: Int) {
@@ -48,6 +51,15 @@ class Order(
         this.finishedDateTime = LocalDateTime.now()
     }
 
+    fun generateTrackOrderCode(lastOrderNumber: Int) {
+        val number = lastOrderNumber + 1
+        this.trackOrderCode = "${initialDateTime.format(DateTimeFormatter.ofPattern("ddMMYYYY"))} - ${
+            StringUtils.leftPad(
+                number.toString(), 5, "0"
+            )
+        }"
+    }
+
     private fun validateIsReady() {
         if (status != OrderStatus.READY) {
             throw DomainException("Order must be READY to complete")
@@ -72,7 +84,7 @@ class Order(
     }
 
     private fun validateState() {
-        if (status != OrderStatus.FINISHED || status != OrderStatus.CANCELED || status != OrderStatus.READY) {
+        if (status == OrderStatus.FINISHED || status == OrderStatus.CANCELED || status == OrderStatus.READY) {
             throw DomainException("Order must not be FINISHED, CANCELED or READY to add or remove order line")
         }
     }

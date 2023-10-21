@@ -1,7 +1,7 @@
-# Contexto delimitado: Ordem
+# Contexto delimitado: Pedido
 Este contexto delimitado é responsável por gerenciar o pedido do cliente.
 ## Domínio: Pedido
-Pedido é um domínio que gerencia o ciclo de vida de um pedido feito por um cliente.
+Pedido é um domínio que gerencia o ciclo de vida de um pedido feito por um cliente e que será preparado pelo cozinheiro.
 Através deste domínio o cliente pode:
 - Criar um pedido
 - Adicionar produtos ao pedido

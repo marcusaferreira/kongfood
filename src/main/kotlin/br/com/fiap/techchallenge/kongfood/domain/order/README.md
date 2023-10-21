@@ -2,7 +2,7 @@
 This bounded context is responsible for managing the client order.
 For a portuguese version of this document, please check [README-pt-BR.md](README-pt-BR.md).
 ## Domain: Order
-Order is a domain that manage the lifecycle of an order that a client made.
+Order is a domain that manage the lifecycle of an order that a client made and it will be prepared by the cook.
 Through this domain, the client can:
 - Create an order
 - Add products to the order
