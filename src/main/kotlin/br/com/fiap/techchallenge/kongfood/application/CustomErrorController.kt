@@ -1,4 +1,4 @@
-package br.com.fiap.techchallenge.kongfood.application.controller.error
+package br.com.fiap.techchallenge.kongfood.application
 
 import org.springframework.boot.web.servlet.error.ErrorController
 import org.springframework.web.bind.annotation.GetMapping

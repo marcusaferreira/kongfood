@@ -1,8 +1,8 @@
-package br.com.fiap.techchallenge.kongfood.domain.client.service
+package br.com.fiap.techchallenge.kongfood.domain.customer.service
 
 import java.util.UUID
 
-interface ClientService {
+interface CustomerService {
 
     fun createClient(name: String, email: String, phone: String?, cpf: String?): UUID
 

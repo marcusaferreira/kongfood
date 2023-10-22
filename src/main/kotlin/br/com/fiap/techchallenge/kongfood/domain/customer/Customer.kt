@@ -1,8 +1,8 @@
-package br.com.fiap.techchallenge.kongfood.domain.client
+package br.com.fiap.techchallenge.kongfood.domain.customer
 
 import java.util.UUID
 
-class Client(
+class Customer(
     val id: UUID,
     val name: String,
     val email: String,
