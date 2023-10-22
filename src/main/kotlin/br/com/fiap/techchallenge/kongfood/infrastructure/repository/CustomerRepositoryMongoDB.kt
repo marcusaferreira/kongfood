@@ -1,4 +1,4 @@
-package br.com.fiap.techchallenge.kongfood.infrastracture.repository
+package br.com.fiap.techchallenge.kongfood.infrastructure.repository
 
 import br.com.fiap.techchallenge.kongfood.domain.customer.Customer
 import br.com.fiap.techchallenge.kongfood.domain.customer.repository.CustomerRepository

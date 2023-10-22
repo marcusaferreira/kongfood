@@ -1,6 +1,9 @@
-package br.com.fiap.techchallenge.kongfood.infrastracture.configuration
+package br.com.fiap.techchallenge.kongfood.infrastructure.configuration
 
 import br.com.fiap.techchallenge.kongfood.KongfoodApplication
+import br.com.fiap.techchallenge.kongfood.domain.customer.repository.CustomerRepository
+import br.com.fiap.techchallenge.kongfood.domain.customer.service.CustomerService
+import br.com.fiap.techchallenge.kongfood.domain.customer.service.DomainCustomerService
 import br.com.fiap.techchallenge.kongfood.domain.order.repository.OrderRepository
 import br.com.fiap.techchallenge.kongfood.domain.order.service.DomainOrderService
 import br.com.fiap.techchallenge.kongfood.domain.order.service.OrderService
@@ -15,5 +18,10 @@ class BeanConfiguration {
     @Bean
     fun orderService(orderRepository: OrderRepository): OrderService {
         return DomainOrderService(orderRepository = orderRepository)
+    }
+
+    @Bean
+    fun customerService(customerRepository: CustomerRepository): CustomerService {
+        return DomainCustomerService(customerRepository = customerRepository)
     }
 }

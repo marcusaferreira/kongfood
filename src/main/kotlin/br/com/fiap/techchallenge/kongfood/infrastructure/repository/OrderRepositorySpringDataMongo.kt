@@ -1,4 +1,4 @@
-package br.com.fiap.techchallenge.kongfood.infrastracture.repository
+package br.com.fiap.techchallenge.kongfood.infrastructure.repository
 
 import br.com.fiap.techchallenge.kongfood.domain.order.Order
 import org.springframework.data.mongodb.repository.MongoRepository
