@@ -1,6 +1,8 @@
 package br.com.fiap.techchallenge.kongfood.domain.order.service
 
+import br.com.fiap.techchallenge.kongfood.domain.order.OrderStatus
 import br.com.fiap.techchallenge.kongfood.domain.order.Product
+import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderDTO
 import java.util.UUID
 
 interface OrderService {
@@ -23,6 +25,6 @@ interface OrderService {
 
     fun getOrderData(orderId: UUID): OrderDTO
 
-    fun listOrders(): List<OrderDTO>
+    fun listOrdersOfTheDayByState(status: OrderStatus): List<OrderDTO>
 
 }

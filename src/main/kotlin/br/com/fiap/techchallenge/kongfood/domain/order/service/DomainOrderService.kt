@@ -4,6 +4,8 @@ import br.com.fiap.techchallenge.kongfood.domain.order.Order
 import br.com.fiap.techchallenge.kongfood.domain.order.OrderStatus
 import br.com.fiap.techchallenge.kongfood.domain.order.Product
 import br.com.fiap.techchallenge.kongfood.domain.order.repository.OrderRepository
+import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderDTO
+import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderLineDTO
 import java.math.BigDecimal
 import java.util.*
 
@@ -76,11 +78,33 @@ class DomainOrderService(
     }
 
     override fun getOrderData(orderId: UUID): OrderDTO {
-        TODO("Not yet implemented")
+        val order = getOrder(orderId)
+        return OrderDTO(
+            order.id,
+            order.lines.map { OrderLineDTO(it.product.id, it.product.name, it.product.description, it.quantity) },
+            order.status,
+            order.total,
+            order.clientId,
+            order.initialDateTime,
+            order.finishedDateTime,
+            order.trackOrderCode
+        )
     }
 
-    override fun listOrders(): List<OrderDTO> {
-        TODO("Not yet implemented")
+    override fun listOrdersOfTheDayByState(status: OrderStatus): List<OrderDTO> {
+        val orders = orderRepository.findOrderOfTheDayByStatus(status)
+        return orders.map { order ->
+            OrderDTO(
+                order.id,
+                order.lines.map { OrderLineDTO(it.product.id, it.product.name, it.product.description, it.quantity) },
+                order.status,
+                order.total,
+                order.clientId,
+                order.initialDateTime,
+                order.finishedDateTime,
+                order.trackOrderCode
+            )
+        }
     }
 
     private fun getOrder(orderId: UUID): Order {
