@@ -76,9 +76,7 @@ class OrderUnitTest {
             BigDecimal.valueOf(100.00),
             "Product 1",
             "Product 1 description",
-            ProductCategory.SIDE_DISHES,
-            true
-        )
+            ProductCategory.SIDE_DISHES)
         order.addOrderLine(product, 1)
         assertAll(
             { assertEquals(order.lines.size, 1, "Order lines size should be 1") },
@@ -95,8 +93,7 @@ class OrderUnitTest {
             BigDecimal.valueOf(100.00),
             "Product 1",
             "Product 1 description",
-            ProductCategory.SIDE_DISHES,
-            true
+            ProductCategory.SIDE_DISHES
         )
         assertThrows(DomainException::class.java) {
             order.addOrderLine(product, 1)
@@ -111,8 +108,7 @@ class OrderUnitTest {
             BigDecimal.valueOf(100.00),
             "Product 1",
             "Product 1 description",
-            ProductCategory.SIDE_DISHES,
-            true
+            ProductCategory.SIDE_DISHES
         )
         order.addOrderLine(product, 1)
         order.removeOrderLine(product)
@@ -130,9 +126,7 @@ class OrderUnitTest {
             BigDecimal.valueOf(100.00),
             "Product 1",
             "Product 1 description",
-            ProductCategory.SIDE_DISHES,
-            true
-        )
+            ProductCategory.SIDE_DISHES)
         assertThrows(DomainException::class.java) {
             order.removeOrderLine(product)
         }

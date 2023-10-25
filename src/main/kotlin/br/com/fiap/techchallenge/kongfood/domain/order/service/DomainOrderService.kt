@@ -81,7 +81,15 @@ class DomainOrderService(
         val order = getOrder(orderId)
         return OrderDTO(
             order.id,
-            order.lines.map { OrderLineDTO(it.product.id, it.product.name, it.product.description, it.quantity) },
+            order.lines.map {
+                OrderLineDTO(
+                    it.product.id,
+                    it.product.name,
+                    it.product.description,
+                    it.product.price,
+                    it.quantity
+                )
+            },
             order.status,
             order.total,
             order.clientId,
@@ -96,7 +104,15 @@ class DomainOrderService(
         return orders.map { order ->
             OrderDTO(
                 order.id,
-                order.lines.map { OrderLineDTO(it.product.id, it.product.name, it.product.description, it.quantity) },
+                order.lines.map {
+                    OrderLineDTO(
+                        it.product.id,
+                        it.product.name,
+                        it.product.description,
+                        it.product.price,
+                        it.quantity
+                    )
+                },
                 order.status,
                 order.total,
                 order.clientId,

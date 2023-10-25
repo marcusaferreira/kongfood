@@ -7,6 +7,9 @@ import br.com.fiap.techchallenge.kongfood.domain.customer.service.DomainCustomer
 import br.com.fiap.techchallenge.kongfood.domain.order.repository.OrderRepository
 import br.com.fiap.techchallenge.kongfood.domain.order.service.DomainOrderService
 import br.com.fiap.techchallenge.kongfood.domain.order.service.OrderService
+import br.com.fiap.techchallenge.kongfood.domain.product.repository.ProductRepository
+import br.com.fiap.techchallenge.kongfood.domain.product.service.DomainProductService
+import br.com.fiap.techchallenge.kongfood.domain.product.service.ProductService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
@@ -23,5 +26,10 @@ class BeanConfiguration {
     @Bean
     fun customerService(customerRepository: CustomerRepository): CustomerService {
         return DomainCustomerService(customerRepository = customerRepository)
+    }
+
+    @Bean
+    fun productService(productRepository: ProductRepository): ProductService {
+        return DomainProductService(productRepository = productRepository)
     }
 }

@@ -36,7 +36,9 @@ OrderStatus is a value object that represents the state of the order. It can be:
 ##### Value Object: OrderLine
 OrderLine is a value object that represents a line of the order. It contains the product and the quantity of the product.
 #### Entity: Product
-Product is an entity that represents a product that can be added to the order. A product can be:
+Product is an entity that represents a product that can be added to the order. This entity is a representation of a 
+product in a determined moment, it is created to don't propagate to an existed order or a previous one the changes that
+ocurred in the product bounded context. A product can be:
 - Food, like a burger or a pizza or a sandwich or fries. Food are divided in:
     - Main course, like a burger or a pizza or a sandwich;
     - Side dish, like fries or onion rings or chicken nuggets;

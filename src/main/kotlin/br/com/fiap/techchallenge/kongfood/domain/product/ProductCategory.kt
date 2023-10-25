@@ -1,4 +1,4 @@
-package br.com.fiap.techchallenge.kongfood.domain.order
+package br.com.fiap.techchallenge.kongfood.domain.product
 
 enum class ProductCategory (val type: String) {
     DRINKS("Drinks"),
