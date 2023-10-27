@@ -24,4 +24,8 @@ class ProductRepositoryMongoDB(
         return productRepository.findByCategory(productCategory)
     }
 
+    override fun findByName(name: String): Product? {
+        return productRepository.findByName(name)
+    }
+
 }

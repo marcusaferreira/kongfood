@@ -1,6 +1,6 @@
 package br.com.fiap.techchallenge.kongfood.infrastructure.configuration
 
-import br.com.fiap.techchallenge.kongfood.KongfoodApplication
+import br.com.fiap.techchallenge.kongfood.KongFoodApplication
 import br.com.fiap.techchallenge.kongfood.domain.customer.repository.CustomerRepository
 import br.com.fiap.techchallenge.kongfood.domain.customer.service.CustomerService
 import br.com.fiap.techchallenge.kongfood.domain.customer.service.DomainCustomerService
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-@ComponentScan(basePackageClasses = [KongfoodApplication::class])
+@ComponentScan(basePackageClasses = [KongFoodApplication::class])
 class BeanConfiguration {
 
     @Bean

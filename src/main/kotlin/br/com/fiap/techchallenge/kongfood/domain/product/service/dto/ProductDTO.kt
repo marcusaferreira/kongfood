@@ -7,20 +7,20 @@ import java.util.*
 
 data class ProductDTO(
     val id: UUID?,
-    val price: BigDecimal,
+    val price: String,
     val name: String,
     val description: String,
     val category: String,
-    val status: Boolean
+    val status: Boolean? = true
 ) {
     fun toEntity(): Product {
         return Product(
             id = id ?: UUID.randomUUID(),
-            price = price,
+            price = BigDecimal(price),
             name = name,
             description = description,
-            category = ProductCategory.valueOf(category),
-            status = status
+            category = ProductCategory.getEnumByString(category)!!,
+            status = status!!
         )
     }
 
@@ -28,7 +28,7 @@ data class ProductDTO(
         fun convertFromEntityToDTO(product: Product): ProductDTO {
             return ProductDTO(
                 product.id,
-                product.price,
+                product.price.toString(),
                 product.name,
                 product.description,
                 product.category.type,

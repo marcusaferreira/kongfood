@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class KongfoodApplication
+class KongFoodApplication
 
 fun main(args: Array<String>) {
-	runApplication<KongfoodApplication>(*args)
+	runApplication<KongFoodApplication>(*args)
 }

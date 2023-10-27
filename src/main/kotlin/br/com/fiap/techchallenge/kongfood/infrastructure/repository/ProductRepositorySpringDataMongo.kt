@@ -10,4 +10,6 @@ import java.util.*
 interface ProductRepositorySpringDataMongo: MongoRepository<Product, UUID> {
     fun findByCategory(productCategory: ProductCategory): List<Product>
 
+    fun findByName(name: String): Product?
+
 }

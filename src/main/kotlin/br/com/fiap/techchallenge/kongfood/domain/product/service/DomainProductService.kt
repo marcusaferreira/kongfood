@@ -12,6 +12,7 @@ class DomainProductService(
 ) : ProductService {
     override fun addProduct(product: ProductDTO): UUID {
         val newProduct = product.toEntity()
+        validateProductDoesNotExist(newProduct)
         productRepository.save(newProduct)
         return newProduct.id
     }
@@ -21,11 +22,9 @@ class DomainProductService(
         val savedProduct = productRepository.findById(product.id!!)
 
         validateProductExist(savedProduct, product.id)
-        if (savedProduct.get().category == productToUpdate.category) {
-            productRepository.save(productToUpdate)
-        } else {
-            throw DomainException("Product category can't be changed")
-        }
+        validateProductDoesNotExist(productToUpdate)
+        validateProductIsSameCategory(savedProduct, productToUpdate)
+        productRepository.save(productToUpdate)
 
         return product
     }
@@ -44,7 +43,7 @@ class DomainProductService(
     }
 
     override fun findProductByCategory(category: String): List<ProductDTO> {
-        val productCategory = ProductCategory.valueOf(category)
+        val productCategory = ProductCategory.getEnumByString(category) ?: throw DomainException("Category not found")
         val products = productRepository.findByCategory(productCategory)
 
         return products.filter { product -> product.status }.map { ProductDTO.convertFromEntityToDTO(it) }
@@ -53,6 +52,22 @@ class DomainProductService(
     private fun validateProductExist(product: Optional<Product>, productID: UUID) {
         if (product.isEmpty) {
             throw DomainException("Product not founded for the ID $productID")
+        }
+    }
+
+    private fun validateProductDoesNotExist(product: Product) {
+        val productExist = productRepository.findByName(product.name)
+        if (productExist != null) {
+            throw DomainException("Product already exists")
+        }
+    }
+
+    private fun validateProductIsSameCategory(
+        savedProduct: Optional<Product>,
+        productToUpdate: Product
+    ) {
+        if (savedProduct.get().category != productToUpdate.category) {
+            throw DomainException("Product category can't be changed")
         }
     }
 }

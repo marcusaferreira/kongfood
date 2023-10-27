@@ -8,4 +8,5 @@ interface ProductRepository {
     fun save(product: Product)
     fun findById(id: UUID): Optional<Product>
     fun findByCategory(productCategory: ProductCategory): List<Product>
+    fun findByName(name: String): Product?
 }

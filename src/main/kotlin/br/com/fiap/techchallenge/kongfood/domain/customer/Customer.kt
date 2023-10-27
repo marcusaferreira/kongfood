@@ -8,7 +8,8 @@ class Customer(
     val email: String,
     val phone: String?,
     val cpf: String?,
-    var isActive: Boolean = true
+    var isActive: Boolean = true,
+    val user: User
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
