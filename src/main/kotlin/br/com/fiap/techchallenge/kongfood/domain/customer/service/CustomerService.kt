@@ -1,14 +1,21 @@
 package br.com.fiap.techchallenge.kongfood.domain.customer.service
 
+import br.com.fiap.techchallenge.kongfood.domain.customer.service.dto.CustomerDTO
 import java.util.UUID
 
 interface CustomerService {
 
-    fun createClient(name: String, email: String, phone: String?, cpf: String?): UUID
+    fun createCustomer(customerDTO: CustomerDTO): UUID
 
-    fun updateClient(id: UUID, name: String, email: String, phone: String?, cpf: String?)
+    fun updateCustomer(customerDTO: CustomerDTO, id: String): CustomerDTO
 
-    fun deActivateClient(id: UUID)
+    fun deActivateCustomer(id: String)
 
-    fun findClientByCpf(cpf: String): UUID?
+    fun findCustomerByCpf(cpf: String): CustomerDTO
+
+    fun findCustomerById(id: String): CustomerDTO
+
+    fun findCustomerByEmail(email: String): CustomerDTO
+
+    fun activateCustomer(id: String)
 }

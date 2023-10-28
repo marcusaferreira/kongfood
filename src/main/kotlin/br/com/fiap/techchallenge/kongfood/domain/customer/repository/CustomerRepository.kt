@@ -7,7 +7,8 @@ interface CustomerRepository {
 
     fun save(customer: Customer)
 
-    fun findClientByCpf(cpf: String): Optional<Customer>
+    fun findCustomerByCpf(cpf: String): Optional<Customer>
 
-    fun findClientById(id: UUID): Optional<Customer>
+    fun findCustomerById(id: UUID): Optional<Customer>
+    fun findCustomerByEmail(email: String): Optional<Customer>
 }

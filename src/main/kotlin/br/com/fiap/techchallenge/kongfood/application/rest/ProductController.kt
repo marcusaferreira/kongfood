@@ -6,9 +6,11 @@ import br.com.fiap.techchallenge.kongfood.domain.product.service.dto.ProductDTO
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.media.Content
+import io.swagger.v3.oas.annotations.media.ExampleObject
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
+import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
@@ -72,7 +74,15 @@ class ProductController(
     @GetMapping("/category/{category}")
     fun findByCategory(
         @Parameter(
-            description = "category of the Poducts to be searched", required = true
+            description = "category of the Poducts to be searched",
+            required = true,
+            schema = Schema(implementation = String::class),
+            examples = [ExampleObject(value = "Drinks"),
+                ExampleObject(value = "Desserts"),
+                ExampleObject(value = "Main courses"),
+                ExampleObject(value = "Side dishes"),
+                ExampleObject(value = "Combos")]
+
         ) @PathVariable category: String
     ): ResponseEntity<Any> {
         return try {
@@ -103,7 +113,7 @@ class ProductController(
         ]
     )
     @PostMapping
-    fun addProduct(@RequestBody product: ProductDTO): ResponseEntity<Any> {
+    fun addProduct(@RequestBody @Valid product: ProductDTO): ResponseEntity<Any> {
         val productID = productService.addProduct(product)
 
         return try {
@@ -142,7 +152,7 @@ class ProductController(
         ]
     )
     @PutMapping
-    fun updateProduct(@RequestBody product: ProductDTO): ResponseEntity<Any> {
+    fun updateProduct(@RequestBody @Valid product: ProductDTO): ResponseEntity<Any> {
         return try {
             val productUpdated = productService.updateProduct(product)
 
@@ -187,7 +197,7 @@ class ProductController(
         return try {
             productService.changeStatus(UUID.fromString(id))
             ResponseEntity.ok().build()
-        }catch (e: DomainException) {
+        } catch (e: DomainException) {
             ResponseEntity.notFound().build()
         }
     }

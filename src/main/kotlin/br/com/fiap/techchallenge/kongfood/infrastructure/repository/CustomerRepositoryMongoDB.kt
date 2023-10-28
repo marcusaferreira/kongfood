@@ -15,11 +15,16 @@ class CustomerRepositoryMongoDB(
         customerRepository.save(customer)
     }
 
-    override fun findClientByCpf(cpf: String): Optional<Customer> {
+    override fun findCustomerByCpf(cpf: String): Optional<Customer> {
         return customerRepository.findByCpf(cpf)
     }
 
-    override fun findClientById(id: UUID): Optional<Customer> {
+    override fun findCustomerById(id: UUID): Optional<Customer> {
         return customerRepository.findById(id)
     }
+
+    override fun findCustomerByEmail(email: String): Optional<Customer> {
+        return customerRepository.findByEmail(email)
+    }
+
 }

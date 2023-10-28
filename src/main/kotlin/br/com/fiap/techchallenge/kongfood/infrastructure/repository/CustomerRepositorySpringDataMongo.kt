@@ -8,5 +8,6 @@ import java.util.*
 @Repository
 interface CustomerRepositorySpringDataMongo: MongoRepository<Customer, UUID> {
     fun findByCpf(cpf: String): Optional<Customer>
+    fun findByEmail(email: String): Optional<Customer>
 
 }

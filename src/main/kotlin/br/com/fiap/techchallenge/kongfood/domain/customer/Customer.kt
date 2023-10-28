@@ -7,10 +7,10 @@ class Customer(
     val name: String,
     val email: String,
     val phone: String?,
-    val cpf: String?,
+    val cpf: CPF?,
     var isActive: Boolean = true,
-    val user: User
 ) {
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
