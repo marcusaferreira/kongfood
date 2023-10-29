@@ -4,8 +4,8 @@ class CPF(
     val cpf: String
 ) {
     init {
-        require(cpf.length != 11) { "CPF must have 11 digits" }
-        require(!cpf.matches(Regex("[0-9]+"))) { "CPF must have only numbers" }
+        require(cpf.length == 11) { "CPF must have 11 digits" }
+        require(cpf.matches(Regex("[0-9]+"))) { "CPF must have only numbers" }
         require(verifyCPF()) {"CPF is invalid"}
     }
     private fun verifyCPF(): Boolean {

@@ -1,5 +1,6 @@
 package br.com.fiap.techchallenge.kongfood.infrastructure.repository
 
+import br.com.fiap.techchallenge.kongfood.domain.customer.CPF
 import br.com.fiap.techchallenge.kongfood.domain.customer.Customer
 import br.com.fiap.techchallenge.kongfood.domain.customer.repository.CustomerRepository
 import org.springframework.context.annotation.Primary
@@ -16,7 +17,7 @@ class CustomerRepositoryMongoDB(
     }
 
     override fun findCustomerByCpf(cpf: String): Optional<Customer> {
-        return customerRepository.findByCpf(cpf)
+        return customerRepository.findByCpf(CPF(cpf))
     }
 
     override fun findCustomerById(id: UUID): Optional<Customer> {

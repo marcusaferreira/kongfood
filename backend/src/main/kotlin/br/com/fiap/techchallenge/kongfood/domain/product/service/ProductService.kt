@@ -13,5 +13,6 @@ interface ProductService {
     fun findProductById(productID: UUID): ProductDTO?
 
     fun findProductByCategory(category: String): List<ProductDTO>
+    fun findAll(): List<ProductDTO>
 
 }

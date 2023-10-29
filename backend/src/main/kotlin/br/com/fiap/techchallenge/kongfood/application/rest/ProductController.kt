@@ -201,4 +201,23 @@ class ProductController(
             ResponseEntity.notFound().build()
         }
     }
+
+    @Operation(summary = "Find all products")
+    @ApiResponses(
+        value = [
+            ApiResponse(
+                responseCode = "200",
+                description = "Products found",
+                content = [Content(mediaType = "application/json", schema = Schema(implementation = ProductDTO::class))]
+            ),
+        ]
+    )
+    @GetMapping
+    fun findAll(): ResponseEntity<Any> {
+        return try {
+            ResponseEntity.ok(productService.findAll())
+        } catch (e: DomainException) {
+            ResponseEntity.notFound().build()
+        }
+    }
 }

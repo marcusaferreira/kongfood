@@ -24,107 +24,107 @@
     "status": true
   },
   {
-    "id": "9d931780-6d82-47a8-ae2c-8dd0db1b86c6",
+    "_id": "9d931780-6d82-47a8-ae2c-8dd0db1b86c6",
     "price": "15.00",
     "name": "Milk Shake - chocolate",
     "description": "500ml de milk shake",
-    "category": "Desserts",
+    "category": "DESSERTS",
     "status": true
   },
   {
-    "id": "5e45a654-aee6-4c3e-a25d-2df18c1f6a9f",
+    "_id": "5e45a654-aee6-4c3e-a25d-2df18c1f6a9f",
     "price": "15.00",
     "name": "Milk Shake - morango",
     "description": "500ml de milk shake",
-    "category": "Desserts",
+    "category": "DESSERTS",
     "status": true
   },
   {
-    "id": "672c8dc9-cf9a-4219-a94a-18d4593bba13",
+    "_id": "672c8dc9-cf9a-4219-a94a-18d4593bba13",
     "price": "15.00",
     "name": "Milk Shake - ninho",
     "description": "500ml de milk shake",
-    "category": "Desserts",
+    "category": "DESSERTS",
     "status": true
   },
   {
-    "id": "e85e3ad7-9b94-4ebc-ba59-2d2cf4d947ac",
+    "_id": "e85e3ad7-9b94-4ebc-ba59-2d2cf4d947ac",
     "price": "10.00",
     "name": "Sunday - chocolate",
     "description": "Sunday de chocolate",
-    "category": "Desserts",
+    "category": "DESSERTS",
     "status": true
   },
   {
-    "id": "3887069a-576c-4aa5-b523-deccc0a5ee54",
+    "_id": "3887069a-576c-4aa5-b523-deccc0a5ee54",
     "price": "10.00",
     "name": "Sunday - morango",
     "description": "Sunday de morango",
-    "category": "Desserts",
+    "category": "DESSERTS",
     "status": true
   },
   {
-    "id": "3bf48a70-a886-4e34-89f6-887ed16d57a8",
+    "_id": "3bf48a70-a886-4e34-89f6-887ed16d57a8",
     "price": "25.00",
     "name": "Kong smash",
     "description": "Pão, smash de 90g, bacon saboroso, muçarela, ovo, maionese especial, alface e tomate",
-    "category": "Main courses",
+    "category": "MAIN_COURSES",
     "status": true
   },
   {
-    "id": "c92cbeae-2f73-4108-b9f3-67956d7a4dc8",
+    "_id": "c92cbeae-2f73-4108-b9f3-67956d7a4dc8",
     "price": "27.00",
     "name": "Burger Onion smash",
     "description": "Pão, smash de 90g, bacon saboroso, cheddar, cebola carmelizada, barbecue, maionese, alface e tomate",
-    "category": "Main courses",
+    "category": "MAIN_COURSES",
     "status": true
   },
   {
-    "id": "1a8612f7-9ccc-4f57-a517-cdbd2284f54b",
+    "_id": "1a8612f7-9ccc-4f57-a517-cdbd2284f54b",
     "price": "23.00",
     "name": "Kong fit",
     "description": "Pão, hambúrguer assado delicioso de 150g, barbecue zero, muçarela light, alface e tomate",
-    "category": "Main courses",
+    "category": "MAIN_COURSES",
     "status": true
   },
   {
-    "id": "42ec8e7a-ba14-47ef-87dc-ae4fb825dfa2",
+    "_id": "42ec8e7a-ba14-47ef-87dc-ae4fb825dfa2",
     "price": "30.00",
     "name": "Top Kong",
     "description": "Pão, 2 hambúrgueres bovinos de 150g cada, bacon, muçarela, ovo, maionese especial",
-    "category": "Main courses",
+    "category": "MAIN_COURSES",
     "status": true
   },
   {
-    "id": "603a2f99-a009-4a8b-990a-566c6e35beb6",
+    "_id": "603a2f99-a009-4a8b-990a-566c6e35beb6",
     "price": "18.00",
     "name": "Porção de batata 300g",
     "description": "300g de bata frita",
-    "category": "Side dishes",
+    "category": "SIDE_DISHES",
     "status": true
   },
   {
-    "id": "131ba9b8-b1fd-4b81-83fb-beea478bf5d9",
+    "_id": "131ba9b8-b1fd-4b81-83fb-beea478bf5d9",
     "price": "22.00",
     "name": "Porção de batata 500g",
     "description": "500g de bata frita",
-    "category": "Side dishes",
+    "category": "SIDE_DISHES",
     "status": true
   },
   {
-    "id": "e662833c-cac9-49d0-b86d-249bbdc51a3d",
+    "_id": "e662833c-cac9-49d0-b86d-249bbdc51a3d",
     "price": "25.00",
     "name": "Batata Kong",
     "description": "500g de bata frita, cheddar, muçarela e bacon",
-    "category": "Side dishes",
+    "category": "SIDE_DISHES",
     "status": true
   },
   {
-    "id": "14c2a523-0507-4186-b37a-85ae5cf11636",
+    "_id": "14c2a523-0507-4186-b37a-85ae5cf11636",
     "price": "55.00",
     "name": "Combo Top Kong ",
     "description": "Um Top Kong, mais uma porção de Batata Kong e um refrigerante",
-    "category": "Combos",
+    "category": "COMBOS",
     "status": true
   }
 ]

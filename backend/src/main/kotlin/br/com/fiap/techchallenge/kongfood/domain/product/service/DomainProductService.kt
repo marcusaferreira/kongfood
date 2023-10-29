@@ -49,6 +49,10 @@ class DomainProductService(
         return products.filter { product -> product.status }.map { ProductDTO.convertFromEntityToDTO(it) }
     }
 
+    override fun findAll(): List<ProductDTO> {
+        return productRepository.findAll().map { ProductDTO.convertFromEntityToDTO(it) }
+    }
+
     private fun validateProductExist(product: Optional<Product>, productID: UUID) {
         if (product.isEmpty) {
             throw DomainException("Product not founded for the ID $productID")

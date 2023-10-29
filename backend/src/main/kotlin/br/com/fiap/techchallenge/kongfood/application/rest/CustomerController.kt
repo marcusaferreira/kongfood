@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.lang.IllegalArgumentException
 
 @RestController
 @RequestMapping("/customers")
@@ -88,9 +89,11 @@ class CustomerController(
     fun create(@RequestBody @Valid customerDTO: CustomerDTO): ResponseEntity<Any> {
         return try {
             val id = customerService.createCustomer(customerDTO)
-            ResponseEntity.created(java.net.URI.create("/customers/$id")).build()
+            ResponseEntity.created(java.net.URI.create("/customers/$id")).body(id)
         } catch (e: DomainException) {
             ResponseEntity.unprocessableEntity().body(e.message)
+        } catch (e: IllegalArgumentException){
+            ResponseEntity.badRequest().body(e.message)
         }
     }
 

@@ -48,13 +48,15 @@ class OrderController(
     fun createOrder(
         @Parameter(required = false, description = "ID of the customer") @RequestParam(
             required = false, value = "customerId"
-        ) string: String?
+        ) customerId: String?
     ): ResponseEntity<Any> {
         return try {
-            val orderId = orderService.createOrder(UUID.fromString(string))
+            val orderId = orderService.createOrder(if(!customerId.isNullOrBlank())UUID.fromString(customerId) else null)
             ResponseEntity.created(URI.create("/orders/$orderId")).body(orderId)
         } catch (e: DomainException) {
             ResponseEntity.notFound().build()
+
+
         }
     }
 

@@ -28,4 +28,8 @@ class ProductRepositoryMongoDB(
         return productRepository.findByName(name)
     }
 
+    override fun findAll(): List<Product> {
+        return productRepository.findAll()
+    }
+
 }
