@@ -43,6 +43,7 @@ The code is divided into 3 main packages:
 ## Technical Requirements
 * Java 17
 * Gradle 7.5.1
+* Docker 4.23.0 or higher
 
 ### Technical Reference Documentation
 For further reference, please consider the following sections:
@@ -51,9 +52,14 @@ For further reference, please consider the following sections:
 * [Kotlin Reference Documentation](https://kotlinlang.org/docs/reference/)
 * [Organizing Layers Using Hexagonal Architecture, DDD and Spring](https://www.baeldung.com/hexagonal-architecture-ddd-spring)
 * [Hexagonal Architecture](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software))
+* [Domain-Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design)
+* Docker
+  * [Docker](https://docs.docker.com/)
+  * [Docker Compose](https://docs.docker.com/compose/)
 
 ### Additional Links
 These additional references should also help you:
 * [MongoDB](https://www.mongodb.com/)
 * [Spring Data MongoDB - Reference Documentation](https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#reference)
+* [Docker Buildkit](https://docs.docker.com/build/buildkit/#getting-started)
 

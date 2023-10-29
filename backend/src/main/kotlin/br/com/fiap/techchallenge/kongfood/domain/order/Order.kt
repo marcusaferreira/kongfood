@@ -12,7 +12,7 @@ class Order(
     val lines: MutableList<OrderLine>,
     var status: OrderStatus,
     var total: BigDecimal,
-    val clientId: UUID? = null,
+    val customerId: UUID? = null,
     val initialDateTime: LocalDateTime = LocalDateTime.now(),
     var finishedDateTime: LocalDateTime? = null,
     var trackOrderCode: String? = null

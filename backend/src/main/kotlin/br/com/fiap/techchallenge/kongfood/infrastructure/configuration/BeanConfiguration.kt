@@ -10,6 +10,7 @@ import br.com.fiap.techchallenge.kongfood.domain.order.service.OrderService
 import br.com.fiap.techchallenge.kongfood.domain.product.repository.ProductRepository
 import br.com.fiap.techchallenge.kongfood.domain.product.service.DomainProductService
 import br.com.fiap.techchallenge.kongfood.domain.product.service.ProductService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
@@ -19,8 +20,9 @@ import org.springframework.context.annotation.Configuration
 class BeanConfiguration {
 
     @Bean
-    fun orderService(orderRepository: OrderRepository): OrderService {
-        return DomainOrderService(orderRepository = orderRepository)
+    @Autowired
+    fun orderService(orderRepository: OrderRepository, productService: ProductService): OrderService {
+        return DomainOrderService(orderRepository = orderRepository, productService = productService)
     }
 
     @Bean

@@ -7,7 +7,7 @@ import java.util.UUID
 
 interface OrderService {
 
-    fun createOrder(clientId: UUID?): UUID
+    fun createOrder(customerId: UUID?): UUID
 
     fun addOrderLine(orderId: UUID, product: Product, quantity: Int)
 

@@ -1,20 +1,23 @@
 package br.com.fiap.techchallenge.kongfood.domain.order.service
 
+import br.com.fiap.techchallenge.kongfood.domain.DomainException
 import br.com.fiap.techchallenge.kongfood.domain.order.Order
 import br.com.fiap.techchallenge.kongfood.domain.order.OrderStatus
 import br.com.fiap.techchallenge.kongfood.domain.order.Product
 import br.com.fiap.techchallenge.kongfood.domain.order.repository.OrderRepository
 import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderDTO
 import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderLineDTO
+import br.com.fiap.techchallenge.kongfood.domain.product.service.ProductService
 import java.math.BigDecimal
 import java.util.*
 
 class DomainOrderService(
-    val orderRepository: OrderRepository
+    val orderRepository: OrderRepository,
+    private val productService: ProductService
 ) : OrderService {
 
-    override fun createOrder(clientId: UUID?): UUID {
-        val order = Order(UUID.randomUUID(), mutableListOf(), OrderStatus.CREATED, BigDecimal.ZERO, clientId)
+    override fun createOrder(customerId: UUID?): UUID {
+        val order = Order(UUID.randomUUID(), mutableListOf(), OrderStatus.CREATED, BigDecimal.ZERO, customerId)
         val lastOrderNumber = orderRepository.countOrdersOfTheDay()
         order.generateTrackOrderCode(lastOrderNumber)
         orderRepository.save(order)
@@ -24,6 +27,7 @@ class DomainOrderService(
 
     override fun addOrderLine(orderId: UUID, product: Product, quantity: Int) {
         val order = getOrder(orderId)
+        verifyProduct(product)
         order.addOrderLine(product, quantity)
         order.chageState(OrderStatus.PENDING)
 
@@ -32,6 +36,7 @@ class DomainOrderService(
 
     override fun removeOrderLine(orderId: UUID, product: Product) {
         val order = getOrder(orderId)
+        verifyProduct(product)
         order.removeOrderLine(product)
         if (order.lines.isEmpty()) {
             order.chageState(OrderStatus.CREATED)
@@ -92,7 +97,7 @@ class DomainOrderService(
             },
             order.status,
             order.total,
-            order.clientId,
+            order.customerId,
             order.initialDateTime,
             order.finishedDateTime,
             order.trackOrderCode
@@ -115,7 +120,7 @@ class DomainOrderService(
                 },
                 order.status,
                 order.total,
-                order.clientId,
+                order.customerId,
                 order.initialDateTime,
                 order.finishedDateTime,
                 order.trackOrderCode
@@ -125,6 +130,13 @@ class DomainOrderService(
 
     private fun getOrder(orderId: UUID): Order {
         return orderRepository.findById(orderId)
-            .orElseThrow { throw RuntimeException("Order not found") }
+            .orElseThrow { throw DomainException("Order not found") }
+    }
+
+    private fun verifyProduct(product: Product) {
+        val productDTO = productService.findProductById(product.id) ?: throw DomainException("Product not found")
+        if (productDTO.status == false) {
+            throw DomainException("Product is inactive")
+        }
     }
 }
