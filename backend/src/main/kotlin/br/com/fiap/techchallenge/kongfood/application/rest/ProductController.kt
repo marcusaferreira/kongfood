@@ -114,9 +114,8 @@ class ProductController(
     )
     @PostMapping
     fun addProduct(@RequestBody @Valid product: ProductDTO): ResponseEntity<Any> {
-        val productID = productService.addProduct(product)
-
         return try {
+            val productID = productService.addProduct(product)
             ResponseEntity.created(URI("/products/$productID")).body(productID)
         } catch (e: DomainException) {
             when (e.message) {

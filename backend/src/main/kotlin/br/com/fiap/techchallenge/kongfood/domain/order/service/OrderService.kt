@@ -1,17 +1,19 @@
 package br.com.fiap.techchallenge.kongfood.domain.order.service
 
+import br.com.fiap.techchallenge.kongfood.domain.order.OrderLine
 import br.com.fiap.techchallenge.kongfood.domain.order.OrderStatus
 import br.com.fiap.techchallenge.kongfood.domain.order.Product
 import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderDTO
+import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderLineDTO
 import java.util.UUID
 
 interface OrderService {
 
     fun createOrder(customerId: UUID?): UUID
 
-    fun addOrderLine(orderId: UUID, product: Product, quantity: Int)
+    fun addOrderLine(orderId: UUID, orderLine: OrderLineDTO)
 
-    fun removeOrderLine(orderId: UUID, product: Product)
+    fun removeOrderLine(orderId: UUID, orderLine: OrderLineDTO)
 
     fun confirmOrder(orderId: UUID)
 

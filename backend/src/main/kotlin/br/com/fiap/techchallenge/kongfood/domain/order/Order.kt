@@ -18,7 +18,7 @@ class Order(
     var trackOrderCode: String? = null
 ) {
 
-    fun addOrderLine(product: Product, quantity: Int) {
+    fun addOrderLine(product: Product, quantity: Int, note: String? = null) {
         validateState()
         val orderLine = OrderLine(product, quantity)
         lines.add(orderLine)

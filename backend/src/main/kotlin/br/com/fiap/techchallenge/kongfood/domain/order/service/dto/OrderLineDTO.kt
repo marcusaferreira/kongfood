@@ -8,7 +8,10 @@ data class OrderLineDTO(
     val name: String,
     val description: String,
     val price: BigDecimal,
-    val quantity: Int
+    val category: String,
+    val quantity: Int,
+    val note: String? = null
 ) {
+
 
 }

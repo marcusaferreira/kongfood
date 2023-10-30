@@ -3,12 +3,11 @@ package br.com.fiap.techchallenge.kongfood.application.rest
 import br.com.fiap.techchallenge.kongfood.domain.DomainException
 import br.com.fiap.techchallenge.kongfood.domain.order.OrderStatus
 import br.com.fiap.techchallenge.kongfood.domain.order.service.OrderService
-import br.com.fiap.techchallenge.kongfood.domain.order.Product
 import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderDTO
+import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderLineDTO
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.media.Schema
-import io.swagger.v3.oas.annotations.parameters.RequestBody
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -55,8 +55,6 @@ class OrderController(
             ResponseEntity.created(URI.create("/orders/$orderId")).body(orderId)
         } catch (e: DomainException) {
             ResponseEntity.notFound().build()
-
-
         }
     }
 
@@ -73,19 +71,18 @@ class OrderController(
                     "Order must not be FINISHED, CANCELED or READY to add or remove order line"
         )]
     )
-    @PostMapping("/{id}/lines", consumes = ["application/json"])
+    @PostMapping("/{id}/lines")
     fun addOrderLine(
         @Parameter(description = "ID of the order") @PathVariable("id", required = true) id: UUID,
-        @Parameter(description = "Product to be added") @RequestBody product: Product,
-        @Parameter(description = "Quantity of the product") @RequestParam(value = "quantity") quantity: Int
+        @Parameter(description = "Product to be removed") @RequestBody orderLine: OrderLineDTO
     ): ResponseEntity<Any> {
         return try {
-            orderService.addOrderLine(id, product, quantity)
-            ResponseEntity.ok().build()
+            orderService.addOrderLine(id, orderLine)
+            ResponseEntity.ok(orderService.getOrderData(id))
         } catch (e: DomainException) {
             when (e.message) {
                 "Product not found", "Order must not be FINISHED, CANCELED or READY to add or remove order line",
-                "Product is inactive"  -> ResponseEntity.unprocessableEntity().body(e.message)
+                "Product is inactive", "Product not founded for the ID ${orderLine.productId}"  -> ResponseEntity.unprocessableEntity().body(e.message)
                 ORDER_NOT_FOUND -> ResponseEntity.notFound().build()
                 else -> ResponseEntity.badRequest().build()
             }
@@ -105,13 +102,13 @@ class OrderController(
                     "Order must not be FINISHED, CANCELED or READY to add or remove order line"
         )]
     )
-    @DeleteMapping("/{id}/lines", consumes = ["application/json"])
+    @DeleteMapping("/{id}/lines")
     fun removeOrderLine(
         @Parameter(description = "ID of the order") @PathVariable("id", required = true) id: UUID,
-        @Parameter(description = "Product to be removed") @RequestBody product: Product
+        @Parameter(description = "Product to be removed") @RequestBody orderLine: OrderLineDTO
     ): ResponseEntity<Any> {
         return try {
-            orderService.removeOrderLine(id, product)
+            orderService.removeOrderLine(id, orderLine)
             ResponseEntity.ok().build()
         } catch (e: DomainException) {
             when (e.message) {
@@ -139,7 +136,7 @@ class OrderController(
     ): ResponseEntity<Any> {
         return try {
             orderService.confirmOrder(UUID.fromString(id))
-            ResponseEntity.ok().build()
+            ResponseEntity.ok(orderService.getOrderData(UUID.fromString(id)))
         } catch (e: DomainException) {
             when (e.message) {
                 ORDER_NOT_FOUND -> ResponseEntity.notFound().build()
@@ -165,7 +162,7 @@ class OrderController(
     ): ResponseEntity<Any> {
         return try {
             orderService.prepareOrder(UUID.fromString(id))
-            ResponseEntity.ok().build()
+            ResponseEntity.ok(orderService.getOrderData(UUID.fromString(id)))
         } catch (e: DomainException) {
             when (e.message) {
                 ORDER_NOT_FOUND -> ResponseEntity.notFound().build()
@@ -191,7 +188,7 @@ class OrderController(
     ): ResponseEntity<Any> {
         return try {
             orderService.notifyPreparedOrder(UUID.fromString(id))
-            ResponseEntity.ok().build()
+            ResponseEntity.ok(orderService.getOrderData(UUID.fromString(id)))
         } catch (e: DomainException) {
             when (e.message) {
                 ORDER_NOT_FOUND -> ResponseEntity.notFound().build()
@@ -217,7 +214,7 @@ class OrderController(
     ): ResponseEntity<Any> {
         return try {
             orderService.cancelOrder(UUID.fromString(id))
-            ResponseEntity.ok().build()
+            ResponseEntity.ok(orderService.getOrderData(UUID.fromString(id)))
         } catch (e: DomainException) {
             when (e.message) {
                 ORDER_NOT_FOUND -> ResponseEntity.notFound().build()
@@ -243,7 +240,7 @@ class OrderController(
     ): ResponseEntity<Any> {
         return try {
             orderService.finishOrder(UUID.fromString(id))
-            ResponseEntity.ok().build()
+            ResponseEntity.ok(orderService.getOrderData(UUID.fromString(id)))
         } catch (e: DomainException) {
             when (e.message) {
                 ORDER_NOT_FOUND -> ResponseEntity.notFound().build()

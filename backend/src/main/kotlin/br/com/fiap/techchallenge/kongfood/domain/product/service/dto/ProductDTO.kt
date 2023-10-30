@@ -8,21 +8,21 @@ import java.math.BigDecimal
 import java.util.*
 
 data class ProductDTO(
-    val id: UUID?,
+    var id: String?,
     @field:NotBlank(message = "Price cannot be blank")
     @field:Pattern(regexp = "^[0-9]+(\\.[0-9]{1,2})?\$", message = "Price must be only numbers and 2 decimal places")
-    val price: String,
+    var price: String,
     @field:NotBlank(message = "Name cannot be blank")
-    val name: String,
+    var name: String,
     @field:NotBlank(message = "Description cannot be blank")
-    val description: String,
+    var description: String,
     @field:NotBlank(message = "Category cannot be blank")
-    val category: String,
-    val status: Boolean? = true
+    var category: String,
+    var status: Boolean? = true,
 ) {
     fun toEntity(): Product {
         return Product(
-            id = id ?: UUID.randomUUID(),
+            id = if (!id.isNullOrBlank()) UUID.fromString(id) else UUID.randomUUID(),
             price = BigDecimal(price),
             name = name,
             description = description,
@@ -34,7 +34,7 @@ data class ProductDTO(
     companion object {
         fun convertFromEntityToDTO(product: Product): ProductDTO {
             return ProductDTO(
-                product.id,
+                product.id.toString(),
                 product.price.toString(),
                 product.name,
                 product.description,

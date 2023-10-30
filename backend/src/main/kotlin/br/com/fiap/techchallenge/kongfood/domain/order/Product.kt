@@ -1,5 +1,6 @@
 package br.com.fiap.techchallenge.kongfood.domain.order
 
+import br.com.fiap.techchallenge.kongfood.domain.product.ProductCategory
 import java.math.BigDecimal
 import java.util.*
 

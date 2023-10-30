@@ -7,6 +7,7 @@ import br.com.fiap.techchallenge.kongfood.domain.order.Product
 import br.com.fiap.techchallenge.kongfood.domain.order.repository.OrderRepository
 import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderDTO
 import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderLineDTO
+import br.com.fiap.techchallenge.kongfood.domain.product.ProductCategory
 import br.com.fiap.techchallenge.kongfood.domain.product.service.ProductService
 import java.math.BigDecimal
 import java.util.*
@@ -25,16 +26,20 @@ class DomainOrderService(
         return order.id
     }
 
-    override fun addOrderLine(orderId: UUID, product: Product, quantity: Int) {
+    override fun addOrderLine(orderId: UUID, orderLine: OrderLineDTO) {
+        val product = Product(orderLine.productId, orderLine.price, orderLine.name, orderLine.description,
+            ProductCategory.getEnumByString(orderLine.category)!!)
         val order = getOrder(orderId)
         verifyProduct(product)
-        order.addOrderLine(product, quantity)
+        order.addOrderLine(product, orderLine.quantity, orderLine.note)
         order.chageState(OrderStatus.PENDING)
 
         orderRepository.save(order)
     }
 
-    override fun removeOrderLine(orderId: UUID, product: Product) {
+    override fun removeOrderLine(orderId: UUID, orderLine: OrderLineDTO) {
+        val product = Product(orderLine.productId, orderLine.price, orderLine.name, orderLine.description,
+            ProductCategory.getEnumByString(orderLine.category)!!)
         val order = getOrder(orderId)
         verifyProduct(product)
         order.removeOrderLine(product)
@@ -92,7 +97,9 @@ class DomainOrderService(
                     it.product.name,
                     it.product.description,
                     it.product.price,
-                    it.quantity
+                    it.product.category.type,
+                    it.quantity,
+                    it.note
                 )
             },
             order.status,
@@ -115,7 +122,9 @@ class DomainOrderService(
                         it.product.name,
                         it.product.description,
                         it.product.price,
-                        it.quantity
+                        it.product.category.type,
+                        it.quantity,
+                        it.note
                     )
                 },
                 order.status,

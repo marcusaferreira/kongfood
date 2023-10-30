@@ -2,6 +2,7 @@ package br.com.fiap.techchallenge.kongfood.domain.order
 
 import br.com.fiap.techchallenge.kongfood.KongFoodApplicationTests
 import br.com.fiap.techchallenge.kongfood.domain.DomainException
+import br.com.fiap.techchallenge.kongfood.domain.product.ProductCategory
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll

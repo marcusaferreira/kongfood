@@ -18,10 +18,11 @@ class DomainProductService(
     }
 
     override fun updateProduct(product: ProductDTO): ProductDTO {
+        val productID = UUID.fromString(product.id!!)
         val productToUpdate = product.toEntity()
-        val savedProduct = productRepository.findById(product.id!!)
+        val savedProduct = productRepository.findById(productID)
 
-        validateProductExist(savedProduct, product.id)
+        validateProductExist(savedProduct, productID)
         validateProductDoesNotExist(productToUpdate)
         validateProductIsSameCategory(savedProduct, productToUpdate)
         productRepository.save(productToUpdate)
