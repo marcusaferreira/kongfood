@@ -27,6 +27,9 @@ This project is divided into 3 bounded contexts:
 For further reference, please consider the following sections:
 * [Tech Challenge](https://docs.google.com/document/d/1Ay-Ibw0kTPWWaD3e0yEtVvpCV3PH59aqYK10QD6ct5k/edit?usp=sharing)
 * [Event Storm](https://miro.com/app/board/uXjVNa83QS0=/?share_link_id=481501726445)
+* [Postman collection](https://drive.google.com/file/d/10q7YHOSL5zUNMQB1gxtugwNzTbwYKy_r/view?usp=sharing)
+* [Swagger](http://localhost:8080/swagger-ui.html)
+* [Swagger-PDF](https://drive.google.com/file/d/10parfh2E2axyWB63tnemb7sR7m7HaMCz/view?usp=sharing)
 
 ## Architecture
 This project is based on the hexagonal architecture. The main idea is to separate the business logic from the technical
