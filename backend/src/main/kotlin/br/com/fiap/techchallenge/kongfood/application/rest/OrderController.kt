@@ -109,7 +109,7 @@ class OrderController(
     ): ResponseEntity<Any> {
         return try {
             orderService.removeOrderLine(id, orderLine)
-            ResponseEntity.ok().build()
+            ResponseEntity.ok(orderService.getOrderData(id))
         } catch (e: DomainException) {
             when (e.message) {
                 "Product not found", "Order must not be FINISHED, CANCELED or READY to add or remove order line",
@@ -285,7 +285,7 @@ class OrderController(
             )]
         )]
     )
-    @GetMapping("/orders-of-the-day")
+    @GetMapping("/of-the-day")
     fun listOrdersOfTheDayByState(
         @Parameter(description = "State of the order", required = true,
             schema = Schema(implementation = OrderStatus::class),

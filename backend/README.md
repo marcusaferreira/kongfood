@@ -26,6 +26,7 @@ This project is divided into 3 bounded contexts:
 ### Reference Documentation
 For further reference, please consider the following sections:
 * [Tech Challenge](https://docs.google.com/document/d/1Ay-Ibw0kTPWWaD3e0yEtVvpCV3PH59aqYK10QD6ct5k/edit?usp=sharing)
+* [Event Storm](https://miro.com/app/board/uXjVNa83QS0=/?share_link_id=481501726445)
 
 ## Architecture
 This project is based on the hexagonal architecture. The main idea is to separate the business logic from the technical
