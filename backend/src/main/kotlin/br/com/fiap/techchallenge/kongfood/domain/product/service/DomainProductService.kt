@@ -62,7 +62,7 @@ class DomainProductService(
 
     private fun validateProductDoesNotExist(product: Product) {
         val productExist = productRepository.findByName(product.name)
-        if (productExist != null) {
+        if (productExist != null && productExist.id != product.id) {
             throw DomainException("Product already exists")
         }
     }

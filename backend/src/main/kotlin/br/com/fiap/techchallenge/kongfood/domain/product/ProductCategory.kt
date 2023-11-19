@@ -9,8 +9,11 @@ enum class ProductCategory (val type: String) {
 
     companion object{
         fun getEnumByString(type: String): ProductCategory? {
+            var typeWithoutSpecialCharacters = type.replace("_".toRegex(), " ")
+            typeWithoutSpecialCharacters = typeWithoutSpecialCharacters.replace("-".toRegex(), " ")
+            typeWithoutSpecialCharacters = typeWithoutSpecialCharacters.replace("[^A-Za-z0-9 ]".toRegex(), "")
             for (e in entries) {
-                if (e.type.contentEquals(type,true)) return e
+                if (e.type.contentEquals(typeWithoutSpecialCharacters,true)) return e
             }
             return null
         }

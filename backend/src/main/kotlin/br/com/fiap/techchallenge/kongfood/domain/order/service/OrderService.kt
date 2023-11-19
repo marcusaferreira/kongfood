@@ -1,8 +1,6 @@
 package br.com.fiap.techchallenge.kongfood.domain.order.service
 
-import br.com.fiap.techchallenge.kongfood.domain.order.OrderLine
 import br.com.fiap.techchallenge.kongfood.domain.order.OrderStatus
-import br.com.fiap.techchallenge.kongfood.domain.order.Product
 import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderDTO
 import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderLineDTO
 import java.util.UUID

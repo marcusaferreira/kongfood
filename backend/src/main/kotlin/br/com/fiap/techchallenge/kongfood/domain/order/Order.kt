@@ -20,7 +20,7 @@ class Order(
 
     fun addOrderLine(product: Product, quantity: Int, note: String? = null) {
         validateState()
-        val orderLine = OrderLine(product, quantity)
+        val orderLine = OrderLine(product, quantity, note)
         lines.add(orderLine)
         updateTotal()
     }

@@ -89,52 +89,12 @@ class DomainOrderService(
 
     override fun getOrderData(orderId: UUID): OrderDTO {
         val order = getOrder(orderId)
-        return OrderDTO(
-            order.id,
-            order.lines.map {
-                OrderLineDTO(
-                    it.product.id,
-                    it.product.name,
-                    it.product.description,
-                    it.product.price,
-                    it.product.category.type,
-                    it.quantity,
-                    it.note
-                )
-            },
-            order.status,
-            order.total,
-            order.customerId,
-            order.initialDateTime,
-            order.finishedDateTime,
-            order.trackOrderCode
-        )
+        return OrderDTO.from(order)
     }
 
     override fun listOrdersOfTheDayByState(status: OrderStatus): List<OrderDTO> {
         val orders = orderRepository.findOrderOfTheDayByStatus(status)
-        return orders.map { order ->
-            OrderDTO(
-                order.id,
-                order.lines.map {
-                    OrderLineDTO(
-                        it.product.id,
-                        it.product.name,
-                        it.product.description,
-                        it.product.price,
-                        it.product.category.type,
-                        it.quantity,
-                        it.note
-                    )
-                },
-                order.status,
-                order.total,
-                order.customerId,
-                order.initialDateTime,
-                order.finishedDateTime,
-                order.trackOrderCode
-            )
-        }
+        return orders.map { OrderDTO.from(it)}
     }
 
     private fun getOrder(orderId: UUID): Order {
