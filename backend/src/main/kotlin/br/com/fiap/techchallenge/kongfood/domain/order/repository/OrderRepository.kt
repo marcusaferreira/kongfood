@@ -11,5 +11,5 @@ interface OrderRepository {
     fun findAll(): List<Order>
     fun save(order: Order)
     fun countOrdersOfTheDay(): Int
-    fun findOrderOfTheDayByStatus(status: OrderStatus): List<Order>
+    fun findOrdersOfTheDayByStatus(status: OrderStatus): List<Order>
 }

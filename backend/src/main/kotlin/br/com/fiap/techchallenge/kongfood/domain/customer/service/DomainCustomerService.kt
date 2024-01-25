@@ -91,7 +91,7 @@ class DomainCustomerService(
 
     private fun verifyIfCustomerByCpfAlreadyExists(customerDTO: CustomerDTO) {
         val customer = customerRepository.findCustomerByCpf(customerDTO.cpf!!)
-        if (customer.isPresent && (customerDTO.id != null && customerDTO.id != customer.get().id)) {
+        if (customer.isPresent && (customerDTO.id == null || customerDTO.id != customer.get().id)) {
             throw DomainException("Customer with CPF ${customerDTO.cpf} already exists")
         }
     }

@@ -36,7 +36,7 @@ class OrderRepositoryMongoDB(
         return orderRepository.findAllByInitialDateTimeBetween(todayMidnight, tomorrowMidnight).size
     }
 
-    override fun findOrderOfTheDayByStatus(status: OrderStatus): List<Order> {
+    override fun findOrdersOfTheDayByStatus(status: OrderStatus): List<Order> {
         val midnight = LocalTime.MIDNIGHT
         val today = LocalDate.now(ZoneId.of("Europe/Berlin"))
         val todayMidnight = LocalDateTime.of(today, midnight)

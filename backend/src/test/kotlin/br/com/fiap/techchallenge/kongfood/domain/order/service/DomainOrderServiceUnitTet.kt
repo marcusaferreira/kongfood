@@ -1,6 +1,7 @@
 package br.com.fiap.techchallenge.kongfood.domain.order.service
 
 import br.com.fiap.techchallenge.kongfood.KongFoodApplicationTests
+import br.com.fiap.techchallenge.kongfood.domain.DomainException
 import br.com.fiap.techchallenge.kongfood.domain.order.Order
 import br.com.fiap.techchallenge.kongfood.domain.order.OrderProvider
 import br.com.fiap.techchallenge.kongfood.domain.order.OrderStatus
@@ -143,7 +144,7 @@ class DomainOrderServiceUnitTet {
         val orderToBeFinished = OrderProvider().getCreatedOrderWithSpecificState(UUID.randomUUID(), OrderStatus.READY)
         Mockito.`when`(orderRepository.findById(orderToBeFinished.id)).thenReturn(Optional.of(orderToBeFinished))
 
-        orderService.confirmOrder(orderToBeFinished.id)
+        orderService.finishOrder(orderToBeFinished.id)
 
         Mockito.verify(orderRepository, Mockito.times(1)).findById(orderToBeFinished.id)
         Mockito.verify(orderRepository, Mockito.times(1)).save(any())
@@ -160,12 +161,83 @@ class DomainOrderServiceUnitTet {
 
     @Test
     fun `should list orders of the day by state`(){
-        Mockito.`when`(orderRepository.findOrderOfTheDayByStatus(OrderStatus.CREATED)).thenReturn(listOf(orderMock!!))
+        Mockito.`when`(orderRepository.findOrdersOfTheDayByStatus(OrderStatus.CREATED)).thenReturn(listOf(orderMock!!))
 
         orderService.listOrdersOfTheDayByState(OrderStatus.CREATED)
 
-        Mockito.verify(orderRepository, Mockito.times(1)).findOrderOfTheDayByStatus(OrderStatus.CREATED)
+        Mockito.verify(orderRepository, Mockito.times(1)).findOrdersOfTheDayByStatus(OrderStatus.CREATED)
     }
+
+    @Test
+    fun `should throw exception when try to add an order line with invalid product`(){
+        Mockito.`when`(productService.findProductById(orderLineMockDTO!!.productId)).thenReturn(null)
+        Mockito.`when`(orderRepository.findById(orderMock!!.id)).thenReturn(Optional.of(orderMock!!))
+
+        Assertions.assertThrows(DomainException::class.java) {
+            orderService.addOrderLine(orderMock!!.id, orderLineMockDTO!!)
+        }
+        Mockito.verify(productService, Mockito.times(1)).findProductById(orderLineMockDTO!!.productId)
+        Mockito.verify(orderRepository, Mockito.times(1)).findById(orderMock!!.id)
+        Mockito.verify(orderRepository, Mockito.times(0)).save(any())
+    }
+
+    @Test
+    fun `should throw exception when try to add an order line with inactive product`(){
+        Mockito.`when`(productService.findProductById(orderLineMockDTO!!.productId)).thenReturn(
+            ProductDTO(
+                orderLineMockDTO!!.productId.toString(), orderLineMockDTO!!.price.toString(),
+                orderLineMockDTO!!.name,
+                orderLineMockDTO!!.description,
+                orderLineMockDTO!!.category,
+                false
+            )
+        )
+        Mockito.`when`(orderRepository.findById(orderMock!!.id)).thenReturn(Optional.of(orderMock!!))
+
+        Assertions.assertThrows(DomainException::class.java) {
+            orderService.addOrderLine(orderMock!!.id, orderLineMockDTO!!)
+        }
+        Mockito.verify(productService, Mockito.times(1)).findProductById(orderLineMockDTO!!.productId)
+        Mockito.verify(orderRepository, Mockito.times(1)).findById(orderMock!!.id)
+        Mockito.verify(orderRepository, Mockito.times(0)).save(any())
+    }
+
+    @Test
+    fun `should throw exception when try to get order data with invalid order id`(){
+        Mockito.`when`(orderRepository.findById(orderMock!!.id)).thenReturn(Optional.empty())
+
+        Assertions.assertThrows(DomainException::class.java) {
+            orderService.getOrderData(orderMock!!.id)
+        }
+        Mockito.verify(orderRepository, Mockito.times(1)).findById(orderMock!!.id)
+    }
+
+    // Should list all orders of the day ordered by date, from the most recent to the oldest and grouped by status, READY first, then IN_PREPARATION, then ACCEPTED. Orders with status CREATED, PENDING, CANCELED and FINISHED should not be listed.
+    @Test
+    fun `should list all orders of the day ordered by date, from the most recent to the oldest and grouped by status, READY first, then IN_PREPARATION, then ACCEPTED`() {
+        val orderReady = OrderProvider().getCreatedOrderWithSpecificState(UUID.randomUUID(), OrderStatus.READY)
+        val orderInPreparation =
+            OrderProvider().getCreatedOrderWithSpecificState(UUID.randomUUID(), OrderStatus.IN_PREPARATION)
+        val orderAccepted = OrderProvider().getCreatedOrderWithSpecificState(UUID.randomUUID(), OrderStatus.ACCEPTED)
+
+        Mockito.`when`(orderRepository.findOrdersOfTheDayByStatus(OrderStatus.READY)).thenReturn(listOf(orderReady))
+        Mockito.`when`(orderRepository.findOrdersOfTheDayByStatus(OrderStatus.IN_PREPARATION))
+            .thenReturn(listOf(orderInPreparation))
+        Mockito.`when`(orderRepository.findOrdersOfTheDayByStatus(OrderStatus.ACCEPTED))
+            .thenReturn(listOf(orderAccepted))
+
+        val listedORders = orderService.listPriorityOrdersOfTheDay()
+
+        Mockito.verify(orderRepository, Mockito.times(1)).findOrdersOfTheDayByStatus(OrderStatus.READY)
+        Mockito.verify(orderRepository, Mockito.times(1)).findOrdersOfTheDayByStatus(OrderStatus.IN_PREPARATION)
+        Mockito.verify(orderRepository, Mockito.times(1)).findOrdersOfTheDayByStatus(OrderStatus.ACCEPTED)
+
+        Assertions.assertEquals(3, listedORders.size)
+        Assertions.assertEquals(orderReady.id, listedORders[0].id)
+        Assertions.assertEquals(orderInPreparation.id, listedORders[1].id)
+        Assertions.assertEquals(orderAccepted.id, listedORders[2].id)
+    }
+
 
     companion object{
         var orderMock: Order? = null

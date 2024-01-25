@@ -93,8 +93,17 @@ class DomainOrderService(
     }
 
     override fun listOrdersOfTheDayByState(status: OrderStatus): List<OrderDTO> {
-        val orders = orderRepository.findOrderOfTheDayByStatus(status)
+        val orders = orderRepository.findOrdersOfTheDayByStatus(status)
         return orders.map { OrderDTO.from(it)}
+    }
+
+    override fun listPriorityOrdersOfTheDay(): List<OrderDTO> {
+        val orders = mutableListOf<OrderDTO>()
+        orders.addAll(listOrdersOfTheDayByState(OrderStatus.READY))
+        orders.addAll(listOrdersOfTheDayByState(OrderStatus.IN_PREPARATION))
+        orders.addAll(listOrdersOfTheDayByState(OrderStatus.ACCEPTED))
+
+        return orders
     }
 
     private fun getOrder(orderId: UUID): Order {

@@ -26,5 +26,6 @@ interface OrderService {
     fun getOrderData(orderId: UUID): OrderDTO
 
     fun listOrdersOfTheDayByState(status: OrderStatus): List<OrderDTO>
+    fun listPriorityOrdersOfTheDay(): List<OrderDTO>
 
 }
