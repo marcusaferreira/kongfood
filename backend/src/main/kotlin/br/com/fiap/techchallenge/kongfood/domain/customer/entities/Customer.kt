@@ -1,4 +1,4 @@
-package br.com.fiap.techchallenge.kongfood.domain.customer
+package br.com.fiap.techchallenge.kongfood.domain.customer.entities
 
 import java.util.UUID
 

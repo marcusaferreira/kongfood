@@ -1,7 +1,7 @@
 package br.com.fiap.techchallenge.kongfood.frameworks.drivers.db.repository
 
-import br.com.fiap.techchallenge.kongfood.domain.customer.CPF
-import br.com.fiap.techchallenge.kongfood.domain.customer.Customer
+import br.com.fiap.techchallenge.kongfood.domain.customer.entities.CPF
+import br.com.fiap.techchallenge.kongfood.domain.customer.entities.Customer
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 import java.util.*

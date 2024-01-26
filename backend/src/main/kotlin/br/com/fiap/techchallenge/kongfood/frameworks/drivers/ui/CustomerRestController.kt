@@ -1,8 +1,8 @@
 package br.com.fiap.techchallenge.kongfood.frameworks.drivers.ui
 
 import br.com.fiap.techchallenge.kongfood.domain.DomainException
-import br.com.fiap.techchallenge.kongfood.domain.customer.service.CustomerService
-import br.com.fiap.techchallenge.kongfood.domain.customer.service.dto.CustomerDTO
+import br.com.fiap.techchallenge.kongfood.domain.customer.interfaces.adapters.controller.CustomerService
+import br.com.fiap.techchallenge.kongfood.domain.customer.interfaces.adapters.models.CustomerRequestModel
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import jakarta.validation.Valid
@@ -24,7 +24,7 @@ class CustomerRestController(
                 responseCode = "200",
                 description = "Customer found",
                 content = [io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
-                    schema = io.swagger.v3.oas.annotations.media.Schema(implementation = CustomerDTO::class))]
+                    schema = io.swagger.v3.oas.annotations.media.Schema(implementation = CustomerRequestModel::class))]
             ),
             io.swagger.v3.oas.annotations.responses.ApiResponse(
                 responseCode = "404",
@@ -48,7 +48,7 @@ class CustomerRestController(
                 responseCode = "200",
                 description = "Customer found",
                 content = [io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json",
-                    schema = io.swagger.v3.oas.annotations.media.Schema(implementation = CustomerDTO::class))]
+                    schema = io.swagger.v3.oas.annotations.media.Schema(implementation = CustomerRequestModel::class))]
             ),
             io.swagger.v3.oas.annotations.responses.ApiResponse(
                 responseCode = "404",
@@ -71,7 +71,7 @@ class CustomerRestController(
             io.swagger.v3.oas.annotations.responses.ApiResponse(
                 responseCode = "201",
                 description = "Customer created",
-                content = [io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = io.swagger.v3.oas.annotations.media.Schema(implementation = CustomerDTO::class))]
+                content = [io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = io.swagger.v3.oas.annotations.media.Schema(implementation = CustomerRequestModel::class))]
             ),
             io.swagger.v3.oas.annotations.responses.ApiResponse(
                 responseCode = "422",
@@ -80,9 +80,9 @@ class CustomerRestController(
         ]
     )
     @PostMapping
-    fun create(@RequestBody @Valid customerDTO: CustomerDTO): ResponseEntity<Any> {
+    fun create(@RequestBody @Valid customerRequestModel: CustomerRequestModel): ResponseEntity<Any> {
         return try {
-            val id = customerService.createCustomer(customerDTO)
+            val id = customerService.createCustomer(customerRequestModel)
             ResponseEntity.created(URI.create("/customers/$id")).body(id)
         } catch (e: DomainException) {
             ResponseEntity.unprocessableEntity().body(e.message)
@@ -122,7 +122,7 @@ class CustomerRestController(
                 description = "Customer updated",
                 content = [io.swagger.v3.oas.annotations.media.Content(
                     mediaType = "application/json",
-                    schema = io.swagger.v3.oas.annotations.media.Schema(implementation = CustomerDTO::class)
+                    schema = io.swagger.v3.oas.annotations.media.Schema(implementation = CustomerRequestModel::class)
                 )]
             ),
             io.swagger.v3.oas.annotations.responses.ApiResponse(
@@ -140,9 +140,9 @@ class CustomerRestController(
         ]
     )
     @PutMapping("/{id}")
-    fun update(@RequestBody @Valid customerDTO: CustomerDTO, @PathVariable id: String): ResponseEntity<Any> {
+    fun update(@RequestBody @Valid customerRequestModel: CustomerRequestModel, @PathVariable id: String): ResponseEntity<Any> {
         return try {
-            ResponseEntity.ok(customerService.updateCustomer(customerDTO, id))
+            ResponseEntity.ok(customerService.updateCustomer(customerRequestModel, id))
         } catch (e: DomainException) {
             when (e.message) {
                 "Customer not found for the id $id" -> ResponseEntity.notFound().build()
