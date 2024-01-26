@@ -1,6 +1,7 @@
 package br.com.fiap.techchallenge.kongfood.domain.product
 
 import br.com.fiap.techchallenge.kongfood.KongFoodApplicationTests
+import br.com.fiap.techchallenge.kongfood.domain.product.entities.ProductCategory
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.boot.test.context.SpringBootTest

@@ -7,8 +7,8 @@ import br.com.fiap.techchallenge.kongfood.domain.order.Product
 import br.com.fiap.techchallenge.kongfood.domain.order.repository.OrderRepository
 import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderDTO
 import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderLineDTO
-import br.com.fiap.techchallenge.kongfood.domain.product.ProductCategory
-import br.com.fiap.techchallenge.kongfood.domain.product.service.ProductService
+import br.com.fiap.techchallenge.kongfood.domain.product.entities.ProductCategory
+import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.controller.ProductService
 import java.math.BigDecimal
 import java.util.*
 

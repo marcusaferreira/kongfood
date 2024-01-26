@@ -8,9 +8,9 @@ import br.com.fiap.techchallenge.kongfood.domain.order.OrderStatus
 import br.com.fiap.techchallenge.kongfood.domain.order.Product
 import br.com.fiap.techchallenge.kongfood.domain.order.repository.OrderRepository
 import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderLineDTO
-import br.com.fiap.techchallenge.kongfood.domain.product.ProductCategory
-import br.com.fiap.techchallenge.kongfood.domain.product.service.ProductService
-import br.com.fiap.techchallenge.kongfood.domain.product.service.dto.ProductDTO
+import br.com.fiap.techchallenge.kongfood.domain.product.entities.ProductCategory
+import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.controller.ProductService
+import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.models.ProductResponseModel
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -50,7 +50,7 @@ class DomainOrderServiceUnitTet {
     @Test
     fun `should add an order line`() {
         Mockito.`when`(productService.findProductById(orderLineMockDTO!!.productId)).thenReturn(
-            ProductDTO(
+            ProductResponseModel(
                 orderLineMockDTO!!.productId.toString(), orderLineMockDTO!!.price.toString(),
                 orderLineMockDTO!!.name,
                 orderLineMockDTO!!.description,
@@ -78,7 +78,7 @@ class DomainOrderServiceUnitTet {
             orderLineMockDTO!!.note)
 
         Mockito.`when`(productService.findProductById(orderLineMockDTO!!.productId)).thenReturn(
-            ProductDTO(
+            ProductResponseModel(
                 orderLineMockDTO!!.productId.toString(), orderLineMockDTO!!.price.toString(),
                 orderLineMockDTO!!.name,
                 orderLineMockDTO!!.description,
@@ -184,7 +184,7 @@ class DomainOrderServiceUnitTet {
     @Test
     fun `should throw exception when try to add an order line with inactive product`(){
         Mockito.`when`(productService.findProductById(orderLineMockDTO!!.productId)).thenReturn(
-            ProductDTO(
+            ProductResponseModel(
                 orderLineMockDTO!!.productId.toString(), orderLineMockDTO!!.price.toString(),
                 orderLineMockDTO!!.name,
                 orderLineMockDTO!!.description,

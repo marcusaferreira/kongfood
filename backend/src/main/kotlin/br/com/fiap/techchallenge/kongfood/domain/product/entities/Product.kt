@@ -1,6 +1,5 @@
-package br.com.fiap.techchallenge.kongfood.domain.order
+package br.com.fiap.techchallenge.kongfood.domain.product.entities
 
-import br.com.fiap.techchallenge.kongfood.domain.product.entities.ProductCategory
 import java.math.BigDecimal
 import java.util.*
 
@@ -10,7 +9,10 @@ class Product(
     val name: String,
     val description: String,
     val category: ProductCategory,
+    val status: Boolean
 ) {
+    constructor(product: Product, newStatus: Boolean) :
+            this(product.id, product.price, product.name, product.description, product.category, newStatus)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
