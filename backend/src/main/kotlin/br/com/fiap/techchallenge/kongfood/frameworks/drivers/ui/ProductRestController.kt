@@ -1,7 +1,7 @@
 package br.com.fiap.techchallenge.kongfood.frameworks.drivers.ui
 
 import br.com.fiap.techchallenge.kongfood.domain.DomainException
-import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.controller.ProductService
+import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.controllers.ProductService
 import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.models.ProductRequestModel
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter

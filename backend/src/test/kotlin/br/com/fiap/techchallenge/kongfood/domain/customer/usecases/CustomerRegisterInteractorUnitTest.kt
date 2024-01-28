@@ -3,7 +3,7 @@ package br.com.fiap.techchallenge.kongfood.domain.customer.usecases
 import br.com.fiap.techchallenge.kongfood.KongFoodApplicationTests
 import br.com.fiap.techchallenge.kongfood.domain.DomainException
 import br.com.fiap.techchallenge.kongfood.domain.customer.CustomerProvider
-import br.com.fiap.techchallenge.kongfood.domain.customer.entities.CustomerFactoryImplementation
+import br.com.fiap.techchallenge.kongfood.domain.customer.entities.CustomerFactoryImpl
 import br.com.fiap.techchallenge.kongfood.domain.customer.interfaces.adapters.presenters.CustomerResponseFormatter
 import br.com.fiap.techchallenge.kongfood.domain.customer.interfaces.adapters.repository.CustomerRepository
 import org.junit.jupiter.api.Assertions
@@ -21,7 +21,7 @@ import java.util.*
 class CustomerRegisterInteractorUnitTest {
 
     private val customerRepository: CustomerRepository = mock()
-    private val customerFactory = CustomerFactoryImplementation()
+    private val customerFactory = CustomerFactoryImpl()
     private val customerPresenter = CustomerResponseFormatter()
     private val customerSearchBoundary : CustomerSearchBoundary = mock()
     val customerRegisterInteractor = CustomerRegisterInteractor(

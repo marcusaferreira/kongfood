@@ -1,10 +1,10 @@
 package br.com.fiap.techchallenge.kongfood.frameworks.drivers.ui
 
 import br.com.fiap.techchallenge.kongfood.domain.DomainException
-import br.com.fiap.techchallenge.kongfood.domain.order.OrderStatus
-import br.com.fiap.techchallenge.kongfood.domain.order.service.OrderService
-import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderDTO
-import br.com.fiap.techchallenge.kongfood.domain.order.service.dto.OrderLineDTO
+import br.com.fiap.techchallenge.kongfood.domain.order.entities.OrderStatus
+import br.com.fiap.techchallenge.kongfood.domain.order.interfaces.adapters.controllers.OrderService
+import br.com.fiap.techchallenge.kongfood.domain.order.interfaces.adapters.models.OrderLineRequestModel
+import br.com.fiap.techchallenge.kongfood.domain.order.interfaces.adapters.models.OrderResponseModel
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.media.Schema
@@ -66,7 +66,7 @@ class OrderRestController(
     @PostMapping("/{id}/lines")
     fun addOrderLine(
         @Parameter(description = "ID of the order") @PathVariable("id", required = true) id: UUID,
-        @Parameter(description = "Product to be removed") @RequestBody orderLine: OrderLineDTO
+        @Parameter(description = "Product to be removed") @RequestBody orderLine: OrderLineRequestModel
     ): ResponseEntity<Any> {
         return try {
             orderService.addOrderLine(id, orderLine)
@@ -98,7 +98,7 @@ class OrderRestController(
     @DeleteMapping("/{id}/lines")
     fun removeOrderLine(
         @Parameter(description = "ID of the order") @PathVariable("id", required = true) id: UUID,
-        @Parameter(description = "Product to be removed") @RequestBody orderLine: OrderLineDTO
+        @Parameter(description = "Product to be removed") @RequestBody orderLine: OrderLineRequestModel
     ): ResponseEntity<Any> {
         return try {
             orderService.removeOrderLine(id, orderLine)
@@ -248,7 +248,7 @@ class OrderRestController(
         value = [io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "200", description = "Order data", content = [io.swagger.v3.oas.annotations.media.Content(
                 mediaType = "application/json",
-                schema = Schema(implementation = OrderDTO::class)
+                schema = Schema(implementation = OrderResponseModel::class)
             )]
         ), io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "404", description = ORDER_NOT_FOUND
@@ -274,7 +274,7 @@ class OrderRestController(
         value = [io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "200", description = "List of orders of the day by state", content = [io.swagger.v3.oas.annotations.media.Content(
                 mediaType = "application/json",
-                schema = Schema(implementation = OrderDTO::class)
+                schema = Schema(implementation = OrderResponseModel::class)
             )]
         )]
     )

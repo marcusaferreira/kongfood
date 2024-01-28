@@ -1,6 +1,6 @@
 package br.com.fiap.techchallenge.kongfood.frameworks.drivers.db.repository
 
-import br.com.fiap.techchallenge.kongfood.domain.order.Order
+import br.com.fiap.techchallenge.kongfood.domain.order.entities.Order
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 import java.time.LocalDateTime

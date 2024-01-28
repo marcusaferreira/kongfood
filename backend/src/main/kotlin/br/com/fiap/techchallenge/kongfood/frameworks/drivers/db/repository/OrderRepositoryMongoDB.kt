@@ -1,8 +1,8 @@
 package br.com.fiap.techchallenge.kongfood.frameworks.drivers.db.repository
 
-import br.com.fiap.techchallenge.kongfood.domain.order.Order
-import br.com.fiap.techchallenge.kongfood.domain.order.OrderStatus
-import br.com.fiap.techchallenge.kongfood.domain.order.repository.OrderRepository
+import br.com.fiap.techchallenge.kongfood.domain.order.entities.Order
+import br.com.fiap.techchallenge.kongfood.domain.order.entities.OrderStatus
+import br.com.fiap.techchallenge.kongfood.domain.order.interfaces.adapters.repository.OrderRepository
 import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Component
 import java.time.LocalDate

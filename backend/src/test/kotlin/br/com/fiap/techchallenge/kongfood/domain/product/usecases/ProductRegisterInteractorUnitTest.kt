@@ -4,7 +4,7 @@ import br.com.fiap.techchallenge.kongfood.KongFoodApplicationTests
 import br.com.fiap.techchallenge.kongfood.domain.DomainException
 import br.com.fiap.techchallenge.kongfood.domain.product.ProductProvider
 import br.com.fiap.techchallenge.kongfood.domain.product.entities.ProductFactory
-import br.com.fiap.techchallenge.kongfood.domain.product.entities.ProductFactoryImplementation
+import br.com.fiap.techchallenge.kongfood.domain.product.entities.ProductFactoryImpl
 import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.repository.ProductRepository
 import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.presenters.ProductResponseFormatter
 import org.junit.jupiter.api.Assertions
@@ -21,7 +21,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 class ProductRegisterInteractorUnitTest {
 
     private final val productRepository: ProductRepository = mock()
-    private final val productFactory: ProductFactory = ProductFactoryImplementation()
+    private final val productFactory: ProductFactory = ProductFactoryImpl()
     private final val productPresenter = ProductResponseFormatter()
     val productRegisterInterecator = ProductRegisterInteractor(productRepository, productFactory, productPresenter)
 

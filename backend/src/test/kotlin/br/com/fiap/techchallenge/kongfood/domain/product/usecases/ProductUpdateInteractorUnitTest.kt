@@ -4,7 +4,7 @@ import br.com.fiap.techchallenge.kongfood.KongFoodApplicationTests
 import br.com.fiap.techchallenge.kongfood.domain.DomainException
 import br.com.fiap.techchallenge.kongfood.domain.product.ProductProvider
 import br.com.fiap.techchallenge.kongfood.domain.product.entities.ProductFactory
-import br.com.fiap.techchallenge.kongfood.domain.product.entities.ProductFactoryImplementation
+import br.com.fiap.techchallenge.kongfood.domain.product.entities.ProductFactoryImpl
 import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.models.ProductRequestModel
 import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.presenters.ProductResponseFormatter
 import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.repository.ProductRepository
@@ -24,7 +24,7 @@ import java.util.*
 class ProductUpdateInteractorUnitTest {
 
     private final val productRepository: ProductRepository = mock()
-    private final val productFactory: ProductFactory = ProductFactoryImplementation()
+    private final val productFactory: ProductFactory = ProductFactoryImpl()
     private final val productPresenter = ProductResponseFormatter()
     private final val productSearchBoundary: ProductSearchBoundary = mock()
     val productUpdateInteractor = ProductUpdateInteractor(productRepository, productFactory, productPresenter, productSearchBoundary)
