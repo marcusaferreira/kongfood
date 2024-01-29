@@ -30,8 +30,7 @@ class OrderRestController(
                 responseCode = "201",
                 description = "Order created",
                 content = [io.swagger.v3.oas.annotations.media.Content(
-                    mediaType = "application/json",
-                    schema = Schema(implementation = UUID::class)
+                    mediaType = "application/json", schema = Schema(implementation = UUID::class)
                 )]
             ),
         ]
@@ -43,7 +42,8 @@ class OrderRestController(
         ) customerId: String?
     ): ResponseEntity<Any> {
         return try {
-            val orderId = orderService.createOrder(if(!customerId.isNullOrBlank()) UUID.fromString(customerId) else null)
+            val orderId =
+                orderService.createOrder(if (!customerId.isNullOrBlank()) UUID.fromString(customerId) else null)
             ResponseEntity.created(URI.create("/orders/$orderId")).body(orderId)
         } catch (e: DomainException) {
             ResponseEntity.notFound().build()
@@ -59,8 +59,8 @@ class OrderRestController(
         ), io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "404", description = ORDER_NOT_FOUND
         ), io.swagger.v3.oas.annotations.responses.ApiResponse(
-            responseCode = "422", description = "Product not found or Product is inactive or " +
-                    "Order must not be FINISHED, CANCELED or READY to add or remove order line"
+            responseCode = "422",
+            description = "Product not found or Product is inactive or " + "Order must not be FINISHED, CANCELED or READY to add or remove order line"
         )]
     )
     @PostMapping("/{id}/lines")
@@ -73,9 +73,9 @@ class OrderRestController(
             ResponseEntity.ok(orderService.getOrderData(id))
         } catch (e: DomainException) {
             when (e.message) {
-                "Product not found", "Order must not be FINISHED, CANCELED or READY to add or remove order line",
-                "Product is inactive", "Product not founded for the ID ${orderLine.productId}"  -> ResponseEntity.unprocessableEntity()
+                "Product not found", "Order must not be FINISHED, CANCELED or READY to add or remove order line", "Product is inactive", "Product not founded for the ID ${orderLine.productId}" -> ResponseEntity.unprocessableEntity()
                     .body(e.message)
+
                 ORDER_NOT_FOUND -> ResponseEntity.notFound().build()
                 else -> ResponseEntity.badRequest().build()
             }
@@ -91,8 +91,8 @@ class OrderRestController(
         ), io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "404", description = ORDER_NOT_FOUND
         ), io.swagger.v3.oas.annotations.responses.ApiResponse(
-            responseCode = "422", description = "Product not found or Product is inactive or " +
-                    "Order must not be FINISHED, CANCELED or READY to add or remove order line"
+            responseCode = "422",
+            description = "Product not found or Product is inactive or " + "Order must not be FINISHED, CANCELED or READY to add or remove order line"
         )]
     )
     @DeleteMapping("/{id}/lines")
@@ -105,8 +105,9 @@ class OrderRestController(
             ResponseEntity.ok(orderService.getOrderData(id))
         } catch (e: DomainException) {
             when (e.message) {
-                "Product not found", "Order must not be FINISHED, CANCELED or READY to add or remove order line",
-                "Product is inactive"  -> ResponseEntity.unprocessableEntity().body(e.message)
+                "Product not found", "Order must not be FINISHED, CANCELED or READY to add or remove order line", "Product is inactive" -> ResponseEntity.unprocessableEntity()
+                    .body(e.message)
+
                 ORDER_NOT_FOUND -> ResponseEntity.notFound().build()
                 else -> ResponseEntity.badRequest().build()
             }
@@ -247,8 +248,7 @@ class OrderRestController(
     @ApiResponses(
         value = [io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "200", description = "Order data", content = [io.swagger.v3.oas.annotations.media.Content(
-                mediaType = "application/json",
-                schema = Schema(implementation = OrderResponseModel::class)
+                mediaType = "application/json", schema = Schema(implementation = OrderResponseModel::class)
             )]
         ), io.swagger.v3.oas.annotations.responses.ApiResponse(
             responseCode = "404", description = ORDER_NOT_FOUND
@@ -272,15 +272,18 @@ class OrderRestController(
     @Operation(summary = "List orders of the day by state")
     @ApiResponses(
         value = [io.swagger.v3.oas.annotations.responses.ApiResponse(
-            responseCode = "200", description = "List of orders of the day by state", content = [io.swagger.v3.oas.annotations.media.Content(
-                mediaType = "application/json",
-                schema = Schema(implementation = OrderResponseModel::class)
+            responseCode = "200",
+            description = "List of orders of the day by state",
+            content = [io.swagger.v3.oas.annotations.media.Content(
+                mediaType = "application/json", schema = Schema(implementation = OrderResponseModel::class)
             )]
         )]
     )
     @GetMapping("/of-the-day")
     fun listOrdersOfTheDayByState(
-        @Parameter(description = "State of the order", required = true,
+        @Parameter(
+            description = "State of the order",
+            required = true,
             schema = Schema(implementation = OrderStatus::class),
             examples = [io.swagger.v3.oas.annotations.media.ExampleObject(
                 name = "status", value = "CREATED", summary = "CREATED"
@@ -296,8 +299,8 @@ class OrderRestController(
                 name = "status", value = "FINISHED", summary = "FINISHED"
             ), io.swagger.v3.oas.annotations.media.ExampleObject(
                 name = "status", value = "CANCELED", summary = "CANCELED"
-            )])
-        @RequestParam("status", required = true) status: OrderStatus
+            )]
+        ) @RequestParam("status", required = true) status: OrderStatus
     ): ResponseEntity<Any> {
         return try {
             val order = orderService.listOrdersOfTheDayByState(status)
@@ -307,6 +310,25 @@ class OrderRestController(
         }
     }
 
-
+    @Operation(summary = "List priority orders of the day, ordered by date and time of creation")
+    @ApiResponses(
+        value = [io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "200",
+            description = "List priority orders of the day, "
+                    + "organized from the most recent to the oldest and grouped by status, READY first, then IN_PREPARATION, then ACCEPTED",
+            content = [io.swagger.v3.oas.annotations.media.Content(
+                mediaType = "application/json", schema = Schema(implementation = OrderResponseModel::class)
+            )]
+        )]
+    )
+    @GetMapping("/priorities-of-the-day")
+    fun listPrioritiesOfTheDay(): ResponseEntity<Any> {
+        return try {
+            val order = orderService.listPriorityOrdersOfTheDay()
+            ResponseEntity.ok().body(order)
+        } catch (e: DomainException) {
+            ResponseEntity.badRequest().build()
+        }
+    }
 
 }

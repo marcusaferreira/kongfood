@@ -1,0 +1,1027 @@
+{
+	"info": {
+		"_postman_id": "db135e76-3fc5-4989-800b-f8befff5ee4f",
+		"name": "Tech Challenge",
+		"description": "Essa coleção possui as chamadas de teste para validação da API produzida para solucionar o Tech Challege da Fase 2\n\nAletere o valor da váriavel \"host\" para o valor retornado na execução do comando \"minikube service kongfood --url\".\n\nObs.: é necessário colocar somente o IP e a porta retornados\n\nExecute os comandos da coleção \"Produtos/Carga InicInicial de produtos\" para ter produtos cadastrados para serem testados",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5507458"
+	},
+	"item": [
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Carga Inicial de produtos",
+					"item": [
+						{
+							"name": "Combo Top Kong",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"55.00\",\r\n    \"name\": \"Combo Top Kong \",\r\n    \"description\": \"Um Top Kong, mais uma porção de Batata Kong e um refrigerante\",\r\n    \"category\": \"COMBOS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coke",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"10.5\",\r\n    \"name\": \"Coke\",\r\n    \"description\": \"Refrigerante do tipo cola\",\r\n    \"category\": \"DRINKS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Mineiro",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"9.5\",\r\n    \"name\": \"Mineiro\",\r\n    \"description\": \"Refrigerante do tipo guaraná\",\r\n    \"category\": \"DRINKS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Laranjinha",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"8.5\",\r\n    \"name\": \"Laranjinha\",\r\n    \"description\": \"Refrigerante do tipo laranja\",\r\n    \"category\": \"DRINKS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Milk Shake - chocolate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"15.00\",\r\n    \"name\": \"Milk Shake - chocolate\",\r\n    \"description\": \"500ml de milk shake\",\r\n    \"category\": \"DESSERTS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Milk Shake - morango",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"15.00\",\r\n    \"name\": \"Milk Shake - morango\",\r\n    \"description\": \"500ml de milk shake\",\r\n    \"category\": \"DESSERTS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Milk Shake - ninho",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"15.00\",\r\n    \"name\": \"Milk Shake - ninho\",\r\n    \"description\": \"500ml de milk shake\",\r\n    \"category\": \"DESSERTS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sunday - chocolate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"10.00\",\r\n    \"name\": \"Sunday - chocolate\",\r\n    \"description\": \"Sunday de chocolate\",\r\n    \"category\": \"DESSERTS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sunday - morango",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"10.00\",\r\n    \"name\": \"Sunday - morango\",\r\n    \"description\": \"Sunday de morango\",\r\n    \"category\": \"DESSERTS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Kong smash",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"25.00\",\r\n    \"name\": \"Kong smash\",\r\n    \"description\": \"Pão, smash de 90g, bacon saboroso, muçarela, ovo, maionese especial, alface e tomate\",\r\n    \"category\": \"MAIN_COURSES\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Burger Onion smash",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"27.00\",\r\n    \"name\": \"Burger Onion smash\",\r\n    \"description\": \"Pão, smash de 90g, bacon saboroso, cheddar, cebola carmelizada, barbecue, maionese, alface e tomate\",\r\n    \"category\": \"MAIN_COURSES\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Kong fit",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"23.00\",\r\n    \"name\": \"Kong fit\",\r\n    \"description\": \"Pão, hambúrguer assado delicioso de 150g, barbecue zero, muçarela light, alface e tomate\",\r\n    \"category\": \"MAIN_COURSES\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Top Kong",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"30.00\",\r\n    \"name\": \"Top Kong\",\r\n    \"description\": \"Pão, 2 hambúrgueres bovinos de 150g cada, bacon, muçarela, ovo, maionese especial\",\r\n    \"category\": \"MAIN_COURSES\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Porção de batata 300g",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"18.00\",\r\n    \"name\": \"Porção de batata 300g\",\r\n    \"description\": \"300g de bata frita\",\r\n    \"category\": \"SIDE_DISHES\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Porção de batata 500g",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"22.00\",\r\n    \"name\": \"Porção de batata 500g\",\r\n    \"description\": \"500g de bata frita\",\r\n    \"category\": \"SIDE_DISHES\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Batata Kong",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"price\": \"25.00\",\r\n    \"name\": \"Batata Kong\",\r\n    \"description\": \"500g de bata frita, cheddar, muçarela e bacon\",\r\n    \"category\": \"SIDE_DISHES\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}/api/products",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Cadastro dos produtos para a execução de testes"
+				},
+				{
+					"name": "Recuperar produto por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/products/9f35529b-2613-4a35-9183-1e8a2a15ffdb",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"9f35529b-2613-4a35-9183-1e8a2a15ffdb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar produtos por categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/products/category/combos",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"category",
+								"combos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar um produto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"price\": \"25.00\",\r\n    \"name\": \"Batata Kong\",\r\n    \"description\": \"500g de bata frita, cheddar, muçarela e bacon\",\r\n    \"category\": \"SIDE DISHES\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}/api/products",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza um produto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": \"5e45a654-aee6-4c3e-a25d-2df18c1f6a9f\",\r\n        \"price\": \"15.00\",\r\n        \"name\": \"Milk Shake - morango\",\r\n        \"description\": \"500ml de milk shake de morango\",\r\n        \"category\": \"Desserts\",\r\n        \"status\": true,\r\n        \"note\": null,\r\n        \"quantity\": 1\r\n}\r\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}/api/products",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista todos os produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/products",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Requisiçõs a API de produtos"
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Cria um cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"José da Silva Souza\",\r\n  \"email\": \"josess@teste.com.br\",\r\n  \"phone\": \"61999125003\",\r\n  \"cpf\": \"65452039082\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}/api/customers",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza um cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"8fcf9bdb-286d-41eb-b22e-79e34e6deb51\",\r\n    \"name\": \"José da Silva Souza\",\r\n    \"email\": \"jose2s@teste.com.br\",\r\n    \"phone\": \"62999125003\",\r\n    \"cpf\": \"65452039082\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}/api/customers/8fcf9bdb-286d-41eb-b22e-79e34e6deb51",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"8fcf9bdb-286d-41eb-b22e-79e34e6deb51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recupera os dados de um cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/customers/8fcf9bdb-286d-41eb-b22e-79e34e6deb51",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"8fcf9bdb-286d-41eb-b22e-79e34e6deb51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recupera os dados de um cliente por CPF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/customers/cpf/65452039082",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"cpf",
+								"65452039082"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperar dados de um cliente por e-mail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/customers/email/josess@teste.com.br",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"customers",
+								"email",
+								"josess@teste.com.br"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Requisições para validação da API de Clientes"
+		},
+		{
+			"name": "Pedido",
+			"item": [
+				{
+					"name": "Inicia um pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/orders?customerId=8fcf9bdb-286d-41eb-b22e-79e34e6deb51",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "8fcf9bdb-286d-41eb-b22e-79e34e6deb51"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recupera os dados do pedido por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/orders/33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista os pedidos a serem preparados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/orders/of-the-day?status=ACCEPTED",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"of-the-day"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "ACCEPTED"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista os pedidos do dia",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/orders/priorities-of-the-day",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"priorities-of-the-day"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista os pedidos do dia por situação",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/orders/of-the-day?status=ACCEPTED",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"of-the-day"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "ACCEPTED"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancela um pedido",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/orders/32b44284-b835-4998-afe2-8c3e283e4c4b/cancel",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"32b44284-b835-4998-afe2-8c3e283e4c4b",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirma pedido e solicita o preparo",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/orders/33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd/confirm",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd",
+								"confirm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inicia a preparação do pedido",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/orders/33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd/prepare",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd",
+								"prepare"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notifica que o pedido está pronto",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/orders/33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd/notify",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd",
+								"notify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Finaliza o pedido após retirada pelo cliente",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/orders/33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd/finish",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd",
+								"finish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adiciona item ao pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"faec3c51-6c07-44ee-95e3-759552be5c09\",\r\n    \"price\": \"10.5\",\r\n    \"name\": \"Coke\",\r\n    \"description\": \"Refrigerante do tipo cola\",\r\n    \"category\": \"Drinks\",\r\n    \"quantity\": 2,\r\n    \"note\": \"Com bacon extra\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}/api/orders/33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd/lines",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd",
+								"lines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover item do pedido",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"faec3c51-6c07-44ee-95e3-759552be5c09\",\r\n    \"price\": \"10.5\",\r\n    \"name\": \"Coke\",\r\n    \"description\": \"Refrigerante do tipo cola\",\r\n    \"category\": \"Drinks\",\r\n    \"quantity\": 2,\r\n    \"note\": \"Com bacon extra\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host}}/api/orders/33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd/lines",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd",
+								"lines"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Validação da API de registro e manipulação de pedidos"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}

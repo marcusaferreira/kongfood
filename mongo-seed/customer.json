@@ -1,3 +1,0 @@
-[
-    {"_id":{"$binary":{"base64":"60FtKNubz49R621O43kusg==","subType":"03"}},"name":"José da Silva Souza","email":"jose2s@teste.com.br","phone":"62999125003","cpf":{"cpf":"65452039082"},"isActive":true,"_class":"br.com.fiap.techchallenge.kongfood.domain.customer.Customer"}
-]
