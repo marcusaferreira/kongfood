@@ -77,6 +77,13 @@ $ kubectl create -f kongfood-deployment.yml
 $ cd kube
 $ kubectl create -f kongfood-service.yml
 ```
+
+##### Create API HPA
+```
+$ cd kube
+$ kubectl create -f kongfood-hpa.yml
+```
+
 ##### Check Services
 ```
 $ kubectl describe services
