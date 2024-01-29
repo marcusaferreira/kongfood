@@ -1,4 +1,7 @@
 # Kong API
+
+for portuguese version, click [here](/README-pt-BR.md)
+
 The following document describes the deployment of a basic Spring API Service and MongoDB web stack on Kubernetes. Currently, the API is not exposed to the internet, but can be accessed via port-forwarding, and MongoDB does not use replica sets. Requests to MongoDB are made only through Kubernetes cluster internal services.
 
 ## Description
