@@ -1,3 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kongfood
+spec:
+  selector:
+    app: kongfood
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,7 +28,7 @@ spec:
         app: kongfood
     spec:
       containers:
-        - name: app
+        - name: kongfood
           image: marcusaferreira94/kongfood:latest
           ports:
             - containerPort: 8080
