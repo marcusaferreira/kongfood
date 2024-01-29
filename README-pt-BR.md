@@ -1,5 +1,5 @@
 # Kong API
-O seguinte documento descreve a implantação de um serviço básico de API Spring e pilha da web MongoDB no Kubernetes. Atualmente, a API não é exposta à Internet, mas pode ser acessada via encaminhamento de porta e o MongoDB não usa replica sets.
+O seguinte documento descreve a implantação de um serviço básico de API Spring e pilha da web MongoDB no Kubernetes. Atualmente, a API não é exposta à Internet, mas pode ser acessada via encaminhamento de porta e o MongoDB não usa replica sets. As requisições para o MongoDB são feitas somente através de serviços internos do cluster Kubernetes.
 
 ## Descrição
 A API é uma aplicação Spring Boot simples que expõe uma API REST para resolver o problema proposto no TechChallenge do curso de especialização FIAP em Arquitetura de Software.
@@ -103,3 +103,6 @@ $ minikube service kongfood --url
 - [Kubernetes](https://kubernetes.io/)
 - [Minikube](https://minikube.sigs.k8s.io/docs/)
 - [Docker](https://www.docker.com/)
+
+## Arquitetura
+![Arquitetura](/backend/src/main/resources/arquitetura-infraestrutura-tech-challenge-fase-2.jpg)

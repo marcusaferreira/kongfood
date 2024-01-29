@@ -1,5 +1,5 @@
 # Kong API
-The following document describes the deployment of a basic Spring API Service and MongoDB web stack on Kubernetes. Currently, the API is not exposed to the internet, but can be accessed via port-forwarding, and MongoDB does not use replica sets.
+The following document describes the deployment of a basic Spring API Service and MongoDB web stack on Kubernetes. Currently, the API is not exposed to the internet, but can be accessed via port-forwarding, and MongoDB does not use replica sets. Requests to MongoDB are made only through Kubernetes cluster internal services.
 
 ## Description
 The API is a simple Spring Boot application that exposes a REST API to solve the problem proposed in the TechChallenge from the FIAP Software Architecture specialization course.
@@ -103,3 +103,6 @@ $ minikube service kongfood --url
 - [Kubernetes](https://kubernetes.io/)
 - [Minikube](https://minikube.sigs.k8s.io/docs/)
 - [Docker](https://www.docker.com/)
+
+## Architecture
+![Architecture](/backend/src/main/resources/arquitetura-infraestrutura-tech-challenge-fase-2.jpg)
