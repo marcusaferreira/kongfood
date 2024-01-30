@@ -44,44 +44,44 @@ spec:
 ##### Create Persitant Volume
 ```
 $ cd kube
-$ kubectl create -f mongo-pv.yml
+$ kubectl create -f mongo-pv.yaml
 $ kubectl get pv
 ```
 
 ##### Create Persitant Volume Claim
 ```
 $ cd kube
-$ kubectl create -f mongo-pvc.yml
+$ kubectl create -f mongo-pvc.yaml
 $ kubectl get pvc
 ```
 ##### Create MongoDB Deployment
 ```
 $ cd kube
-$ kubectl create -f mongo-deployment.yml
+$ kubectl create -f mongo-deployment.yaml
 ```
 
 ##### Create MongoDB Service
 ```
 $ cd kube
-$ kubectl create -f mongo-service.yml
+$ kubectl create -f mongo-service.yaml
 ```
 
 ##### Create API Service Deployment
 ```
 $ cd kube
-$ kubectl create -f kongfood-deployment.yml
+$ kubectl create -f kongfood-deployment.yaml
 ```
 
 ##### Create API Service
 ```
 $ cd kube
-$ kubectl create -f kongfood-service.yml
+$ kubectl create -f kongfood-service.yaml
 ```
 
 ##### Create API HPA
 ```
 $ cd kube
-$ kubectl create -f kongfood-hpa.yml
+$ kubectl create -f kongfood-hpa.yaml
 ```
 
 ##### Check Services
