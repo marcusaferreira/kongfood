@@ -109,3 +109,4 @@ $ minikube service kongfood --url
 
 ## Architecture
 ![Architecture](/backend/src/main/resources/arquitetura-infraestrutura-tech-challenge-fase-2.jpg)
+[VIDEO] (https://youtu.be/_pq6CPiOJUc)
