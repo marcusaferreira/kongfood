@@ -16,12 +16,18 @@ import br.com.fiap.techchallenge.kongfood.domain.order.interfaces.adapters.prese
 import br.com.fiap.techchallenge.kongfood.domain.order.interfaces.adapters.presenters.OrderResponseFormatter
 import br.com.fiap.techchallenge.kongfood.domain.order.interfaces.adapters.repository.OrderRepository
 import br.com.fiap.techchallenge.kongfood.domain.order.usecases.*
+import br.com.fiap.techchallenge.kongfood.domain.payment.interfaces.adapters.controllers.DomainPaymentService
+import br.com.fiap.techchallenge.kongfood.domain.payment.interfaces.adapters.controllers.PaymentService
+import br.com.fiap.techchallenge.kongfood.domain.payment.interfaces.adapters.presenters.PaymentResponseFormatter
+import br.com.fiap.techchallenge.kongfood.domain.payment.usecases.*
 import br.com.fiap.techchallenge.kongfood.domain.product.entities.ProductFactoryImpl
 import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.controllers.DomainProductService
 import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.controllers.ProductService
 import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.presenters.ProductResponseFormatter
 import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.repository.ProductRepository
 import br.com.fiap.techchallenge.kongfood.domain.product.usecases.*
+import br.com.fiap.techchallenge.kongfood.frameworks.drivers.external.interfaces.PaymentServiceClient
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
@@ -239,5 +245,32 @@ class BeanConfiguration {
             productChangeStatusBoundary = productChangeStatusBoundary,
             productSearchBoundary = productSearchBoundary
         )
+    }
+
+    @Bean
+    fun paymentNotificationBoundary(orderService: OrderService): PaymentNotificationBoundary {
+        val paymentPresenter = PaymentResponseFormatter()
+        return PaymentNotificationInteractor(orderService, paymentPresenter)
+    }
+
+    @Bean
+    fun paymentRegisterBoundary(orderService: OrderService): PaymentRegisterBoundary {
+        val paymentPresenter = PaymentResponseFormatter()
+        return PaymentRegisterInteractor(orderService, paymentPresenter)
+    }
+
+    @Bean
+    fun paymentVerificationBoundary(orderService: OrderService): PaymentVerificationBoundary {
+        val paymentPresenter = PaymentResponseFormatter()
+        return PaymentVerificationInteractor(orderService, paymentPresenter)
+    }
+
+    @Bean
+    fun paymentService(
+        paymentNotificationBoundary: PaymentNotificationBoundary,
+        paymentRegisterBoundary: PaymentRegisterBoundary,
+        paymentVerificationBoundary: PaymentVerificationBoundary
+    ): PaymentService {
+        return DomainPaymentService(paymentNotificationBoundary, paymentRegisterBoundary, paymentVerificationBoundary)
     }
 }

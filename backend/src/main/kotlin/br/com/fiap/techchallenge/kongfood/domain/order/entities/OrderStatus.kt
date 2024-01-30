@@ -4,6 +4,7 @@ enum class OrderStatus {
     CREATED,
     PENDING,
     ACCEPTED,
+    FAILED,
     IN_PREPARATION,
     READY,
     FINISHED,

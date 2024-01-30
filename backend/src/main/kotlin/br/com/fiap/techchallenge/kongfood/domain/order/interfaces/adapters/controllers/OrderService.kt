@@ -28,5 +28,6 @@ interface OrderService {
     fun listOrdersOfTheDayByState(status: OrderStatus): List<OrderResponseModel>
 
     fun listPriorityOrdersOfTheDay(): List<OrderResponseModel>
+    fun reject(orderID: UUID)
 
 }

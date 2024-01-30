@@ -65,6 +65,10 @@ class DomainOrderService(
         return orderSearchBoundary.listPriorityOrdersOfTheDay()
     }
 
+    override fun reject(orderID: UUID) {
+        orderChangeStateBoundary.changeState(orderID, OrderStatus.FAILED)
+    }
+
     private fun verifyProduct(productID: UUID) {
         val productDTO = productService.findProductById(productID)
         if (productDTO.status == false) {
