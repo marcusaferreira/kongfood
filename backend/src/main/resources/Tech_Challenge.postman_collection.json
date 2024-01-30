@@ -995,6 +995,54 @@
 				}
 			],
 			"description": "Validação da API de registro e manipulação de pedidos"
+		},
+		{
+			"name": "Pagamento",
+			"item": [
+				{
+					"name": "Solicita o Pagamento de um pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/payments/request/33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"request",
+								"33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verifica o status do pagamento do pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}/api/payments/verify/33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"payments",
+								"verify",
+								"33b5b15f-bf58-4f4c-b7b9-ad4b9650b8cd"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Requisições para validação da API de Pagamentos, os IDs informados são os IDs dos pedidos"
 		}
 	],
 	"event": [
