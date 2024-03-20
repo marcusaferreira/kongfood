@@ -8,11 +8,9 @@ import br.com.fiap.techchallenge.kongfood.domain.customer.interfaces.adapters.pr
 import br.com.fiap.techchallenge.kongfood.domain.customer.interfaces.adapters.repository.CustomerRepository
 import br.com.fiap.techchallenge.kongfood.domain.customer.usecases.*
 import br.com.fiap.techchallenge.kongfood.domain.order.entities.OrderFactoryImpl
-import br.com.fiap.techchallenge.kongfood.domain.order.entities.OrderProductFactory
 import br.com.fiap.techchallenge.kongfood.domain.order.entities.OrderProductFactoryImpl
 import br.com.fiap.techchallenge.kongfood.domain.order.interfaces.adapters.controllers.DomainOrderService
 import br.com.fiap.techchallenge.kongfood.domain.order.interfaces.adapters.controllers.OrderService
-import br.com.fiap.techchallenge.kongfood.domain.order.interfaces.adapters.presenters.OrderPresenter
 import br.com.fiap.techchallenge.kongfood.domain.order.interfaces.adapters.presenters.OrderResponseFormatter
 import br.com.fiap.techchallenge.kongfood.domain.order.interfaces.adapters.repository.OrderRepository
 import br.com.fiap.techchallenge.kongfood.domain.order.usecases.*
@@ -26,8 +24,6 @@ import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.con
 import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.presenters.ProductResponseFormatter
 import br.com.fiap.techchallenge.kongfood.domain.product.interfaces.adapters.repository.ProductRepository
 import br.com.fiap.techchallenge.kongfood.domain.product.usecases.*
-import br.com.fiap.techchallenge.kongfood.frameworks.drivers.external.interfaces.PaymentServiceClient
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration

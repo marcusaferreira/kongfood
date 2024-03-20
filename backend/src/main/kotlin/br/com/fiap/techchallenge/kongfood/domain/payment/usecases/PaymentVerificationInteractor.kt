@@ -12,32 +12,32 @@ class PaymentVerificationInteractor(
 
     override fun verify(orderID: String): PaymentResponse{
         val order = orderService.getOrderData(UUID.fromString(orderID))
-        when(order.status) {
+        return when(order.status) {
             "CREATED" ,"PENDING" ,"ACCEPTED" -> {
-                return paymentPresenter.prepareSucessResponse(
+                paymentPresenter.prepareSucessResponse(
                     orderID = orderID,
                     status = "PENDING"
                 )
             }
             "IN_PREPARATION", "READY", "FINISHED" -> {
-                return paymentPresenter.prepareSucessResponse(
+                paymentPresenter.prepareSucessResponse(
                     orderID = orderID,
                     status = "PAID"
                 )
             }
             "CANCELED" -> {
-                return paymentPresenter.prepareSucessResponse(
+                paymentPresenter.prepareSucessResponse(
                     orderID = orderID,
                     status = "CANCELED"
                 )
             }
             "FAILED" -> {
-                return paymentPresenter.prepareSucessResponse(
+                paymentPresenter.prepareSucessResponse(
                     orderID = orderID,
                     status = "FAILED"
                 )
             }
-            else -> return paymentPresenter.prepareSucessResponse(
+            else -> paymentPresenter.prepareSucessResponse(
                 orderID = orderID,
                 status = "UNKNOWN"
             )
